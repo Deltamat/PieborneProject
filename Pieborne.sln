@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pieborne", "Pieborne\Pieborne.csproj", "{442F7A76-553F-41E3-840E-077C6BA3B5BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{442F7A76-553F-41E3-840E-077C6BA3B5BC}.Debug|x86.ActiveCfg = Debug|x86
+		{442F7A76-553F-41E3-840E-077C6BA3B5BC}.Debug|x86.Build.0 = Debug|x86
+		{442F7A76-553F-41E3-840E-077C6BA3B5BC}.Release|x86.ActiveCfg = Release|x86
+		{442F7A76-553F-41E3-840E-077C6BA3B5BC}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E81F09E4-5BCE-4F66-80BE-9E28A685E898}
+	EndGlobalSection
+EndGlobal
