@@ -14,11 +14,11 @@ namespace Pieborne
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D Background;
         List<GameObject> gameObjects = new List<GameObject>();
         public static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         public static List<GameObject> gameObjectsToRemove = new List<GameObject>();
-        public static float deltaTime;
-        public static Vector2 ScreenSize;
+        public static float deltaTime;        
         Texture2D collisionTexture;
         GameObject g;
         GameObject e;
@@ -35,6 +35,17 @@ namespace Pieborne
         }
 
         /// <summary>
+        /// Creates a rectangle whithin the bounds of the window
+        /// </summary>
+        public Rectangle ScreenSize
+        {
+            get
+            {
+                return graphics.GraphicsDevice.Viewport.Bounds;
+            }
+        }
+
+        /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
         /// related content.  Calling base.Initialize will enumerate through any components
@@ -43,7 +54,7 @@ namespace Pieborne
         protected override void Initialize()
         {
             IsMouseVisible = true;
-            ScreenSize = new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            
 
             base.Initialize();
         }
@@ -57,6 +68,7 @@ namespace Pieborne
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
+            Background = Content.Load<Texture2D>("BrickyBackground");
             g = new GameObject();
             g.AddComponent(new SpriteRenderer("test"));
             g.AddComponent(new Collider());
@@ -144,7 +156,8 @@ namespace Pieborne
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.BackToFront, null);
+            spriteBatch.Begin();
+            spriteBatch.Draw(Background, ScreenSize, Color.White);
             foreach (GameObject item in gameObjects)
             {
                 item.Draw(spriteBatch);
