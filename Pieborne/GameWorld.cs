@@ -14,6 +14,7 @@ namespace Pieborne
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D Background;
         List<GameObject> gameObjects = new List<GameObject>();
         public static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         public static List<GameObject> gameObjectsToRemove = new List<GameObject>();
@@ -27,6 +28,17 @@ namespace Pieborne
             graphics.PreferredBackBufferHeight = 1080;
             graphics.ApplyChanges();
             graphics.IsFullScreen = true;
+        }
+
+        /// <summary>
+        /// Creates a rectangle whithin the bounds of the window
+        /// </summary>
+        public Rectangle ScreenSize
+        {
+            get
+            {
+                return graphics.GraphicsDevice.Viewport.Bounds;
+            }
         }
 
         /// <summary>
@@ -49,6 +61,7 @@ namespace Pieborne
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Background = Content.Load<Texture2D>("BrickyBackground");
             g = new GameObject();
             g.AddComponent(new Transform(g, Vector2.Zero));
             g.AddComponent(new SpriteRenderer("test"));
@@ -105,6 +118,7 @@ namespace Pieborne
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.BackToFront, null);
+            spriteBatch.Draw(Background, ScreenSize, Color.White);
             foreach (GameObject item in gameObjects)
             {
                 item.Draw(spriteBatch);
