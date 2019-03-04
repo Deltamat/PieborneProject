@@ -13,7 +13,7 @@ namespace Pieborne
         float speed;
         Vector2 startPos;
         double gravityTimer;
-        int gravityStrengt;
+        int gravityStrength;
 
         public Player(float speed, Vector2 startPosition)
         {
@@ -33,7 +33,7 @@ namespace Pieborne
             //position = GetGameObject().Transform.Position; //så andre klasser kan se på player position, 
             //if (gravityTimer < 2)
             //{
-            //    gravityStrengt++;
+            //    gravityStrength++;
             //    gravityTimer += gameTime.ElapsedGameTime.TotalSeconds;
             //}
             //GetGameObject().Transform.Translate(new Vector2(0, gravityStrengt * 0.1f));
