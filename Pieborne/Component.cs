@@ -13,9 +13,12 @@ namespace Pieborne
     {
         GameObject gameObject;
 
-        public GameObject GetGameObject()
+        public GameObject GetGameObject
         {
-            return gameObject;
+            get
+            {
+                return gameObject;
+            }
         }
 
         public virtual void Attach(GameObject gameObject)
