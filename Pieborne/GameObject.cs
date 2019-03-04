@@ -84,6 +84,26 @@ namespace Pieborne
                         }
                     }
                     break;
+
+                case "Terrain":
+                    foreach (Component item in components)
+                    {
+                        if (item.GetType() == typeof(Terrain))
+                        {
+                            return item;
+                        }
+                    }
+                    break;
+
+                case "Gravity":
+                    foreach (Component item in components)
+                    {
+                        if (item.GetType() == typeof(Gravity))
+                        {
+                            return item;
+                        }
+                    }
+                    break;
             }
             return null;
         }

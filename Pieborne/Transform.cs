@@ -10,6 +10,8 @@ namespace Pieborne
 
     public class Transform : Component
     {
+        public Vector2 verticalVelocity;
+
         Vector2 position;
         public Vector2 Position
         {

@@ -14,14 +14,15 @@ namespace Pieborne
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D Background;
         List<GameObject> gameObjects = new List<GameObject>();
         public static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         public static List<GameObject> gameObjectsToRemove = new List<GameObject>();
-        public static float deltaTime;
-        public static Vector2 ScreenSize;
+        public static float deltaTime;        
         Texture2D collisionTexture;
         GameObject g;
         GameObject e;
+        GameObject s;
 
         public GameWorld()
         {
@@ -34,6 +35,17 @@ namespace Pieborne
         }
 
         /// <summary>
+        /// Creates a rectangle whithin the bounds of the window
+        /// </summary>
+        public Rectangle ScreenSize
+        {
+            get
+            {
+                return graphics.GraphicsDevice.Viewport.Bounds;
+            }
+        }
+
+        /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
         /// related content.  Calling base.Initialize will enumerate through any components
@@ -42,7 +54,7 @@ namespace Pieborne
         protected override void Initialize()
         {
             IsMouseVisible = true;
-            ScreenSize = new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            
 
             base.Initialize();
         }
@@ -56,17 +68,27 @@ namespace Pieborne
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
+            Background = Content.Load<Texture2D>("BrickyBackground");
             g = new GameObject();
             g.AddComponent(new SpriteRenderer("test"));
             g.AddComponent(new Collider());
             g.AddComponent(new Player(300, Vector2.Zero));
+            g.AddComponent(new Gravity());
             g.LoadContent(Content);
 
             e = new GameObject();
-            e.Transform.Position = new Vector2(ScreenSize.X * 0.5f, 300);
+            e.Transform.Position = new Vector2(100, 800);
             e.AddComponent(new Collider());
+            e.AddComponent(new Terrain());
             e.AddComponent(new SpriteRenderer("test"));
             e.LoadContent(Content);
+
+            s = new GameObject();
+            s.Transform.Position = new Vector2(100, 700);
+            s.AddComponent(new Collider());
+            s.AddComponent(new SpriteRenderer("test"));
+            s.AddComponent(new Terrain());
+            s.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -98,10 +120,15 @@ namespace Pieborne
 
                 foreach (GameObject otherItem in gameObjects)
                 {
-                    if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox))
+                    if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox) && otherItem.GetComponent("Terrain") == null)
                     {
                         Collider temp = (Collider)otherItem.GetComponent("Collider");
                         temp.Collision(item);
+                    }
+                    else if (otherItem.GetComponent("Gravity") != null)
+                    {
+                        Gravity tmp = (Gravity)otherItem.GetComponent("Gravity");
+                        tmp.IsFalling = true;
                     }
                 }
             }
@@ -129,7 +156,8 @@ namespace Pieborne
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.BackToFront, null);
+            spriteBatch.Begin();
+            spriteBatch.Draw(Background, ScreenSize, Color.White);
             foreach (GameObject item in gameObjects)
             {
                 item.Draw(spriteBatch);
