@@ -18,8 +18,7 @@ namespace Pieborne
         List<GameObject> gameObjects = new List<GameObject>();
         public static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         public static List<GameObject> gameObjectsToRemove = new List<GameObject>();
-        public static float deltaTime;
-        public static Vector2 ScreenSize;
+        public static float deltaTime;        
         Texture2D collisionTexture;
         GameObject g;
         GameObject e;
@@ -54,7 +53,7 @@ namespace Pieborne
         protected override void Initialize()
         {
             IsMouseVisible = true;
-            ScreenSize = new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            
 
             base.Initialize();
         }
@@ -142,7 +141,7 @@ namespace Pieborne
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.BackToFront, null);
+            spriteBatch.Begin();
             spriteBatch.Draw(Background, ScreenSize, Color.White);
             foreach (GameObject item in gameObjects)
             {
