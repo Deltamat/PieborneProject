@@ -64,7 +64,8 @@ namespace Pieborne
             Gravity tmp = (Gravity)GetGameObject.GetComponent("Gravity");
             if (tmp.IsFalling == false)
             {
-                GetGameObject.Transform.verticalVelocity = new Vector2(0, -1000);
+                GetGameObject.Transform.verticalVelocity = -700;
+                tmp.IsFalling = true;
             }
         }
     }

@@ -9,6 +9,8 @@ namespace Pieborne
 {
     public class Gravity : Component
     {
+        double gravityTimer;
+
         bool isFalling = true;
         public bool IsFalling
         {
@@ -24,19 +26,31 @@ namespace Pieborne
 
         public override void Update(GameTime gameTime)
         {
-            if (GetGameObject.Transform.verticalVelocity.Y < 20 && isFalling == true)
+            //if (gravityTimer < 1 && isFalling == true)
+            //{
+            //    GetGameObject.Transform.verticalVelocity++;
+            //    gravityTimer += gameTime.ElapsedGameTime.TotalSeconds;
+
+            //}
+
+            //GetGameObject.Transform.Translate(new Vector2(0, GetGameObject.Transform.verticalVelocity * 0.5f));
+
+            //if (isFalling == false)
+            //{
+            //    GetGameObject.Transform.verticalVelocity = 13.37f;
+            //}
+
+            if (GetGameObject.Transform.verticalVelocity < 1000 && IsFalling == true)
             {
-                GetGameObject.Transform.verticalVelocity.Y++;
-                
+                GetGameObject.Transform.verticalVelocity += (float)Math.Pow(4,2);
             }
 
-            GetGameObject.Transform.Translate(new Vector2(0, GetGameObject.Transform.verticalVelocity.Y * 0.5f));
+            GetGameObject.Transform.Translate(new Vector2(0, GetGameObject.Transform.verticalVelocity * GameWorld.deltaTime));
 
             if (isFalling == false)
             {
-                GetGameObject.Transform.verticalVelocity.Y = 13.37f;
+                GetGameObject.Transform.verticalVelocity = 200f;
             }
-            
         }
     }
 }
