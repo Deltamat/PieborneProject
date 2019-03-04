@@ -30,6 +30,11 @@ namespace Pieborne
             }
         }
 
+        public void IsColliding(GameObject otherObject)
+        {
+
+        }
+
         public GameObject()
         {
             transform = new Transform(this, Vector2.Zero);
@@ -48,6 +53,38 @@ namespace Pieborne
 
         public Component GetComponent(string component)
         {
+            switch (component)
+            {
+                case "SpriteRenderer":
+                    foreach (Component item in components)
+                    {
+                        if (item.GetType() == typeof(SpriteRenderer))
+                        {
+                            return item;
+                        }
+                    }
+                    break;
+
+                case "Collider":
+                    foreach (Component item in components)
+                    {
+                        if (item.GetType() == typeof(Collider))
+                        {
+                            return item;
+                        }
+                    }
+                    break;
+
+                case "Player":
+                    foreach (Component item in components)
+                    {
+                        if (item.GetType() == typeof(Player))
+                        {
+                            return item;
+                        }
+                    }
+                    break;
+            }
             return null;
         }
 

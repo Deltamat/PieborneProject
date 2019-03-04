@@ -18,7 +18,11 @@ namespace Pieborne
         List<GameObject> gameObjects = new List<GameObject>();
         public static List<GameObject> gameObjectsToAdd = new List<GameObject>();
         public static List<GameObject> gameObjectsToRemove = new List<GameObject>();
+        public static float deltaTime;
+        public static Vector2 ScreenSize;
+        Texture2D collisionTexture;
         GameObject g;
+        GameObject e;
 
         public GameWorld()
         {
@@ -50,6 +54,8 @@ namespace Pieborne
         protected override void Initialize()
         {
             IsMouseVisible = true;
+            ScreenSize = new Vector2(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
             base.Initialize();
         }
 
@@ -61,11 +67,19 @@ namespace Pieborne
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             Background = Content.Load<Texture2D>("BrickyBackground");
             g = new GameObject();
-            g.AddComponent(new Transform(g, Vector2.Zero));
             g.AddComponent(new SpriteRenderer("test"));
+            g.AddComponent(new Collider());
+            g.AddComponent(new Player(300, Vector2.Zero));
             g.LoadContent(Content);
+
+            e = new GameObject();
+            e.Transform.Position = new Vector2(ScreenSize.X * 0.5f, 300);
+            e.AddComponent(new Collider());
+            e.AddComponent(new SpriteRenderer("test"));
+            e.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -89,9 +103,20 @@ namespace Pieborne
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             foreach (GameObject item in gameObjects)
             {
                 item.Update(gameTime);
+
+                foreach (GameObject otherItem in gameObjects)
+                {
+                    if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox))
+                    {
+                        Collider temp = (Collider)otherItem.GetComponent("Collider");
+                        temp.Collision(item);
+                    }
+                }
             }
 
             foreach (GameObject item in gameObjectsToAdd)
@@ -122,11 +147,25 @@ namespace Pieborne
             foreach (GameObject item in gameObjects)
             {
                 item.Draw(spriteBatch);
+                DrawCollisionBox(item);
             }
-
 
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        private void DrawCollisionBox(GameObject go)
+        {
+            Rectangle collisionBox = go.CollisionBox;
+            Rectangle topLine = new Rectangle(collisionBox.X, collisionBox.Y, collisionBox.Width, 1);
+            Rectangle bottomLine = new Rectangle(collisionBox.X, collisionBox.Y + collisionBox.Height, collisionBox.Width, 1);
+            Rectangle rightLine = new Rectangle(collisionBox.X + collisionBox.Width, collisionBox.Y, 1, collisionBox.Height);
+            Rectangle leftLine = new Rectangle(collisionBox.X, collisionBox.Y, 1, collisionBox.Height);
+
+            spriteBatch.Draw(collisionTexture, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
     }
 }
