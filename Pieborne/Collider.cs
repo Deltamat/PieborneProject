@@ -12,7 +12,8 @@ namespace Pieborne
         public void Collision(GameObject otherObject)
         {
             Vector2 difference = GetGameObject.Transform.Position - otherObject.Transform.Position;
-            if (Math.Abs(difference.X) > Math.Abs(difference.Y))
+
+            if (Math.Abs(difference.X) > Math.Abs(difference.Y)) // hvis x forskellen er størst så skal den køre højre/venstre kollision
             {
                 if (GetGameObject.CollisionBox.Center.X < otherObject.CollisionBox.Center.X) // højre til venstre
                 {
@@ -27,12 +28,18 @@ namespace Pieborne
                 }
             }
 
-            else if (Math.Abs(difference.X) < Math.Abs(difference.Y))
+            else if (Math.Abs(difference.X) < Math.Abs(difference.Y)) // hvis y forskellen er størst skal den køre op/ned kollision
             {
                 if (GetGameObject.CollisionBox.Center.Y < otherObject.CollisionBox.Center.Y) // oppefra ned
                 {
                     int t = GetGameObject.CollisionBox.Bottom - otherObject.CollisionBox.Top;
                     GetGameObject.Transform.Translate(new Vector2(0, -t));
+
+                    Gravity tmp = (Gravity)GetGameObject.GetComponent("Gravity");
+                    if (otherObject.GetComponent("Terrain") != null)
+                    {
+                        tmp.IsFalling = false;
+                    }
                 }
 
                 else if (GetGameObject.CollisionBox.Center.Y > otherObject.CollisionBox.Center.Y) // nedefra op

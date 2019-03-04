@@ -12,8 +12,20 @@ namespace Pieborne
         public static Vector2 position;
         float speed;
         Vector2 startPos;
-        double gravityTimer;
-        int gravityStrengt;
+
+
+        static Player instance;
+        public static Player Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Player(1, Vector2.Zero);
+                }
+                return instance;
+            }
+        }
 
         public Player(float speed, Vector2 startPosition)
         {
@@ -30,15 +42,9 @@ namespace Pieborne
         public override void Update(GameTime gameTime)
         {
             InputHandler.Instance.Execute(this);
-            //position = GetGameObject().Transform.Position; //så andre klasser kan se på player position, 
-            //if (gravityTimer < 2)
-            //{
-            //    gravityStrengt++;
-            //    gravityTimer += gameTime.ElapsedGameTime.TotalSeconds;
-            //}
-            //GetGameObject().Transform.Translate(new Vector2(0, gravityStrengt * 0.1f));
+            position = GetGameObject.Transform.Position; //så andre klasser kan se på player position, 
+            
 
-            //GetGameObject().Transform.Translate(new Vector2(0, (float)(9.80612f - 0.025865f * Math.Cos(2 * 70) + 0.000058f * Math.Cos(2 * 70))));
         }
 
         public void Move(Vector2 velocity)
@@ -51,6 +57,15 @@ namespace Pieborne
             velocity *= speed;
 
             GetGameObject.Transform.Position += (velocity * GameWorld.deltaTime);
+        }
+
+        public void Jump()
+        {
+            Gravity tmp = (Gravity)GetGameObject.GetComponent("Gravity");
+            if (tmp.IsFalling == false)
+            {
+                GetGameObject.Transform.verticalVelocity = new Vector2(0, -1000);
+            }
         }
     }
 }

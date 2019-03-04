@@ -22,6 +22,7 @@ namespace Pieborne
         Texture2D collisionTexture;
         GameObject g;
         GameObject e;
+        GameObject s;
 
         public GameWorld()
         {
@@ -60,13 +61,22 @@ namespace Pieborne
             g.AddComponent(new SpriteRenderer("test"));
             g.AddComponent(new Collider());
             g.AddComponent(new Player(300, Vector2.Zero));
+            g.AddComponent(new Gravity());
             g.LoadContent(Content);
 
             e = new GameObject();
-            e.Transform.Position = new Vector2(ScreenSize.X * 0.5f, 300);
+            e.Transform.Position = new Vector2(100, 800);
             e.AddComponent(new Collider());
+            e.AddComponent(new Terrain());
             e.AddComponent(new SpriteRenderer("test"));
             e.LoadContent(Content);
+
+            s = new GameObject();
+            s.Transform.Position = new Vector2(100, 700);
+            s.AddComponent(new Collider());
+            s.AddComponent(new SpriteRenderer("test"));
+            s.AddComponent(new Terrain());
+            s.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -98,10 +108,15 @@ namespace Pieborne
 
                 foreach (GameObject otherItem in gameObjects)
                 {
-                    if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox))
+                    if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox) && otherItem.GetComponent("Terrain") == null)
                     {
                         Collider temp = (Collider)otherItem.GetComponent("Collider");
                         temp.Collision(item);
+                    }
+                    else if (otherItem.GetComponent("Gravity") != null)
+                    {
+                        Gravity tmp = (Gravity)otherItem.GetComponent("Gravity");
+                        tmp.IsFalling = true;
                     }
                 }
             }
