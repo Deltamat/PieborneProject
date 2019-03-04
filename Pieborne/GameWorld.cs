@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Pieborne
 {
@@ -13,11 +14,19 @@ namespace Pieborne
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        List<GameObject> gameObjects = new List<GameObject>();
+        public static List<GameObject> gameObjectsToAdd = new List<GameObject>();
+        public static List<GameObject> gameObjectsToRemove = new List<GameObject>();
+        GameObject g;
 
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
+            graphics.ApplyChanges();
+            graphics.IsFullScreen = true;
         }
 
         /// <summary>
@@ -28,8 +37,7 @@ namespace Pieborne
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -41,6 +49,10 @@ namespace Pieborne
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            g = new GameObject();
+            g.AddComponent(new Transform(g, Vector2.Zero));
+            g.AddComponent(new SpriteRenderer("test"));
+            g.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -64,7 +76,23 @@ namespace Pieborne
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            foreach (GameObject item in gameObjects)
+            {
+                item.Update(gameTime);
+            }
+
+            foreach (GameObject item in gameObjectsToAdd)
+            {
+                gameObjects.Add(item);
+            }
+            gameObjectsToAdd.Clear();
+
+            foreach (GameObject item in gameObjectsToRemove)
+            {
+                gameObjects.Remove(item);
+            }
+            gameObjectsToRemove.Clear();
+
 
             base.Update(gameTime);
         }
@@ -76,9 +104,14 @@ namespace Pieborne
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, null);
+            foreach (GameObject item in gameObjects)
+            {
+                item.Draw(spriteBatch);
+            }
 
-            // TODO: Add your drawing code here
 
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
