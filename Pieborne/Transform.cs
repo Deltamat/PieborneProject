@@ -37,7 +37,7 @@ namespace Pieborne
             Gravity fetcher = (Gravity)GetGameObject.GetComponent("Gravity");
             if (fetcher.IsFalling == false)
             {
-                velocity = Vector2.Zero;
+                velocity.Y = 0;
             }
             position += velocity;
         }
