@@ -25,8 +25,8 @@ namespace Pieborne
         {
             get
             {
-                SpriteRenderer sr = (SpriteRenderer)GetComponent("SpriteRenderer");
-                return new Rectangle((int)(transform.Position.X - sr.sprite.Width * 0.5), (int)(transform.Position.Y - sr.sprite.Height * 0.5), sr.sprite.Width, sr.sprite.Height);
+                    SpriteRenderer sr = (SpriteRenderer)GetComponent("SpriteRenderer");
+                    return new Rectangle((int)(transform.Position.X - sr.sprite.Width * 0.5), (int)(transform.Position.Y - sr.sprite.Height * 0.5), sr.sprite.Width, sr.sprite.Height);
             }
         }
 
@@ -114,6 +114,16 @@ namespace Pieborne
                         }
                     }
                     break;
+
+                case "AnimatedGameObject":
+                    foreach (Component item in components)
+                    {
+                        if (item.GetType() == typeof(AnimatedGameObject))
+                        {
+                            return item;
+                        }
+                    }
+                    break;
             }
             return null;
         }
@@ -126,7 +136,7 @@ namespace Pieborne
             }
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             foreach (Component item in components)
             {
@@ -134,7 +144,7 @@ namespace Pieborne
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             foreach (Component item in components)
             {

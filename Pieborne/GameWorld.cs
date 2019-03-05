@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 namespace Pieborne
@@ -25,6 +26,7 @@ namespace Pieborne
         GameObject e;
         GameObject s;
         Texture2D heart;
+        public static AnimatedGameObject ago;
 
         static GameWorld instance;
         static public GameWorld Instance
@@ -45,7 +47,7 @@ namespace Pieborne
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
         }
 
@@ -86,11 +88,18 @@ namespace Pieborne
             Background = Content.Load<Texture2D>("BrickyBackground");
             font = Content.Load<SpriteFont>("font");
             heart = Content.Load<Texture2D>("heart");
+            GameObject reee = new GameObject();
+            //ago = new AnimatedGameObject(10, 10);
+            gameObjectsToRemove.Add(reee);
 
-            g = new GameObject();
-            g.AddComponent(new SpriteRenderer("test"));
+            Song song = Content.Load<Song>("Attack of  the Flaming Pie Tins");
+            MediaPlayer.Play(song);
+
+            g = new AnimatedGameObject(10,10);
+            g.AddComponent(new SpriteRenderer("cat_fighter_sprite"));
             g.AddComponent(new Collider());
-            g.AddComponent(new Player(300, new Vector2(200)));
+            //g.AddComponent(new AnimatedGameObject(10, 10, g));
+            g.AddComponent(new Player(300, new Vector2(700)));
             g.AddComponent(new Gravity());
             g.LoadContent(Content);
 
@@ -144,7 +153,7 @@ namespace Pieborne
                 Exit();
 
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
+            
             foreach (GameObject item in gameObjects)
             {
                 item.Update(gameTime);

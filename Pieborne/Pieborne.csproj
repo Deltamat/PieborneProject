@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AnimatedGameObject.cs" />
     <Compile Include="Beer.cs" />
     <Compile Include="ChargingState.cs" />
     <Compile Include="Collider.cs" />

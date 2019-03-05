@@ -31,10 +31,5 @@ namespace Pieborne
         {
             sprite = content.Load<Texture2D>($"{spriteName}");
         }
-
-        public SpriteRenderer Clone()
-        {
-            return (SpriteRenderer)this.MemberwiseClone();
-        }
     }
 }
