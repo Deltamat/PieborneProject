@@ -47,16 +47,16 @@ namespace Pieborne
 
         }
 
-        public void Move(Vector2 velocity)
+        public void Move(Vector2 direction)
         {
-            if (velocity != Vector2.Zero)
+            if (direction != Vector2.Zero)
             {
-                velocity.Normalize();
+                direction.Normalize();
             }
 
-            velocity *= speed;
+            direction *= speed;
 
-            GetGameObject.Transform.Position += (velocity * GameWorld.deltaTime);
+            GetGameObject.Transform.Position += (direction * GameWorld.deltaTime);
         }
 
         public void Jump()

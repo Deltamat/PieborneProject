@@ -9,16 +9,16 @@ namespace Pieborne
 {
     class MoveCommand : ICommand
     {
-        Vector2 velocity;
+        Vector2 direction;
 
-        public MoveCommand(Vector2 velocity)
+        public MoveCommand(Vector2 direction)
         {
-            this.velocity = velocity;
+            this.direction = direction;
         }
 
         public void Execute(Player p)
         {
-            p.Move(velocity);
+            p.Move(direction);
         }
     }
 }
