@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Pieborne
 {
     public interface IState
     {
-        void Enter(GameObject gameObject);
+        void Enter(Enemy parent);
         void Exit();
         void Execute();
     }
