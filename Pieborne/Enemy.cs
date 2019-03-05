@@ -17,6 +17,7 @@ namespace Pieborne
         private Vector2 startPos;
         public Vector2 directionLeft;
         public Vector2 directionRight;
+        
 
         public Enemy(float speed, Vector2 startPos)
         {

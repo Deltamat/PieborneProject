@@ -9,7 +9,7 @@ namespace Pieborne
     class PatrolState : IState
     {
         private Enemy parent;
-
+        private float patrolTimer = 0;
         public void Enter(Enemy parent)
         {
             this.parent = parent;
@@ -17,9 +17,24 @@ namespace Pieborne
 
         public void Execute()
         {
-            parent.directionLeft *= parent.speed;
+            patrolTimer += GameWorld.deltaTime;
+            //move to the left for 2 seconds
+            if (patrolTimer < 2)
+            {
+                parent.directionLeft *= parent.speed;
+                parent.GetGameObject.Transform.Position += (parent.directionLeft * GameWorld.deltaTime);
+            }
+            //resets timer so the enemy can move left for 2 seconds again
+            else if (patrolTimer > 4)
+            {
 
-            parent.GetGameObject.Transform.Position += (parent.directionLeft * GameWorld.deltaTime);
+            }
+            //moves to the right for 2 seconds
+            else if (patrolTimer > 2)
+            {
+                parent.directionRight *= parent.speed;
+                parent.GetGameObject.Transform.Position += (parent.directionRight * GameWorld.deltaTime);
+            }
         }
 
         public void Exit()
