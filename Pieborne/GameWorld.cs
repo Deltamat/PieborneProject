@@ -24,6 +24,7 @@ namespace Pieborne
         GameObject g;
         GameObject e;
         GameObject s;
+        Texture2D heart;
 
         static GameWorld instance;
         static public GameWorld Instance
@@ -44,7 +45,7 @@ namespace Pieborne
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
-            //graphics.IsFullScreen = true;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
         }
 
@@ -84,30 +85,35 @@ namespace Pieborne
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             Background = Content.Load<Texture2D>("BrickyBackground");
             font = Content.Load<SpriteFont>("font");
+            heart = Content.Load<Texture2D>("heart");
 
             g = new GameObject();
             g.AddComponent(new SpriteRenderer("test"));
             g.AddComponent(new Collider());
-            g.AddComponent(new Player(300, new Vector2(20)));
+            g.AddComponent(new Player(300, new Vector2(200)));
             g.AddComponent(new Gravity());
             g.LoadContent(Content);
 
             for (int i = 0; i < 30; i++)
             {
-                e = new GameObject();
-                e.Transform.Position = new Vector2(800, i * 16 + 600);
-                e.AddComponent(new Collider());
-                e.AddComponent(new Terrain());
-                e.AddComponent(new SpriteRenderer("bricks/Brick Black"));
-                e.LoadContent(Content);
+                
             }
-            
+            e = new GameObject();
+            e.Transform.Position = new Vector2(800, 600);
+            e.AddComponent(new Collider());
+            e.AddComponent(new Terrain());
+            e.AddComponent(new SpriteRenderer("beer"));
+            e.AddComponent(new Beer());
 
             for (int i = 0; i < 100; i++)
             {
-                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i, 1000));
+                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i - 1, 1064));
             }
-             
+            for (int i = 0; i < 67; i++)
+            {
+                TerrainFactory.Instance.Create("Brick", new Vector2(8, 16 * i + 8));
+            }
+
             GameObject singleBlock = new GameObject();
             singleBlock.Transform.Position = new Vector2(784, 800);
             singleBlock.AddComponent(new Collider());
@@ -187,6 +193,10 @@ namespace Pieborne
             {
                 item.Draw(spriteBatch);
                 DrawCollisionBox(item);
+            }
+            for (int i = 0; i < Player.Instance.Health; i++)
+            {
+                spriteBatch.Draw(heart, new Vector2(35 * i + 5, 5), Color.White);
             }
 
             Gravity tmp = (Gravity)g.GetComponent("Gravity");
