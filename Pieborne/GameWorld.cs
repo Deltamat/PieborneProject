@@ -45,7 +45,9 @@ namespace Pieborne
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
+            #if !DEBUG
             graphics.IsFullScreen = true;
+            #endif
             graphics.ApplyChanges();
         }
 
