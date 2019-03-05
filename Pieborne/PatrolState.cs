@@ -8,19 +8,23 @@ namespace Pieborne
 {
     class PatrolState : IState
     {
-        public void Enter(GameObject gameObject)
+        private Enemy parent;
+
+        public void Enter(Enemy parent)
         {
-            throw new NotImplementedException();
+            this.parent = parent;
         }
 
         public void Execute()
         {
-            throw new NotImplementedException();
+            parent.directionLeft *= parent.speed;
+
+            parent.GetGameObject.Transform.Position += (parent.directionLeft * GameWorld.deltaTime);
         }
 
         public void Exit()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

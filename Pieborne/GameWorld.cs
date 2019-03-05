@@ -23,7 +23,6 @@ namespace Pieborne
         SpriteFont font;
         GameObject g;
         GameObject e;
-        GameObject s;
 
         static GameWorld instance;
         static public GameWorld Instance

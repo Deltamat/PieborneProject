@@ -44,7 +44,10 @@
     <Compile Include="ChargingState.cs" />
     <Compile Include="Collider.cs" />
     <Compile Include="Component.cs" />
+    <Compile Include="EnemyBoss.cs" />
     <Compile Include="EnemyFactory.cs" />
+    <Compile Include="EnemyMelee.cs" />
+    <Compile Include="EnemyRanged.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GameObject.cs" />

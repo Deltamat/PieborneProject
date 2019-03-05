@@ -9,8 +9,6 @@ namespace Pieborne
 {
     public class Gravity : Component
     {
-        double gravityTimer;
-
         bool isFalling = true;
         public bool IsFalling
         {
