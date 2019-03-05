@@ -20,6 +20,7 @@ namespace Pieborne
         public static List<GameObject> gameObjectsToRemove = new List<GameObject>();
         public static float deltaTime;        
         Texture2D collisionTexture;
+        SpriteFont font;
         GameObject g;
         GameObject e;
         GameObject s;
@@ -69,6 +70,8 @@ namespace Pieborne
             spriteBatch = new SpriteBatch(GraphicsDevice);
             collisionTexture = Content.Load<Texture2D>("CollisionTexture");
             Background = Content.Load<Texture2D>("BrickyBackground");
+            font = Content.Load<SpriteFont>("font");
+
             g = new GameObject();
             g.AddComponent(new SpriteRenderer("test"));
             g.AddComponent(new Collider());
@@ -76,19 +79,33 @@ namespace Pieborne
             g.AddComponent(new Gravity());
             g.LoadContent(Content);
 
-            e = new GameObject();
-            e.Transform.Position = new Vector2(100, 800);
-            e.AddComponent(new Collider());
-            e.AddComponent(new Terrain());
-            e.AddComponent(new SpriteRenderer("test"));
-            e.LoadContent(Content);
+            for (int i = 0; i < 30; i++)
+            {
+                e = new GameObject();
+                e.Transform.Position = new Vector2(800, i * 16 + 600);
+                e.AddComponent(new Collider());
+                e.AddComponent(new Terrain());
+                e.AddComponent(new SpriteRenderer("bricks/Brick Black"));
+                e.LoadContent(Content);
+            }
+            
 
-            s = new GameObject();
-            s.Transform.Position = new Vector2(100, 700);
-            s.AddComponent(new Collider());
-            s.AddComponent(new SpriteRenderer("test"));
-            s.AddComponent(new Terrain());
-            s.LoadContent(Content);
+            for (int i = 0; i < 100; i++)
+            {
+                s = new GameObject();
+                s.Transform.Position = new Vector2(16 * i, 1000);
+                s.AddComponent(new Collider());
+                s.AddComponent(new SpriteRenderer("bricks/Brick Black"));
+                s.AddComponent(new Terrain());
+                s.LoadContent(Content);
+            }
+             
+            GameObject singleBlock = new GameObject();
+            singleBlock.Transform.Position = new Vector2(784, 800);
+            singleBlock.AddComponent(new Collider());
+            singleBlock.AddComponent(new SpriteRenderer("bricks/Brick Black"));
+            singleBlock.AddComponent(new Terrain());
+            singleBlock.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -125,9 +142,9 @@ namespace Pieborne
                         Collider temp = (Collider)otherItem.GetComponent("Collider");
                         temp.Collision(item);
                     }
-                    else if (otherItem.GetComponent("Gravity") != null)
+                    else if (item.GetComponent("Gravity") != null)
                     {
-                        Gravity tmp = (Gravity)otherItem.GetComponent("Gravity");
+                        Gravity tmp = (Gravity)item.GetComponent("Gravity");
                         tmp.IsFalling = true;
                     }
                 }
@@ -163,6 +180,9 @@ namespace Pieborne
                 item.Draw(spriteBatch);
                 DrawCollisionBox(item);
             }
+
+            Gravity tmp = (Gravity)g.GetComponent("Gravity");
+            spriteBatch.DrawString(font, $"{tmp.IsFalling}", new Vector2(600), Color.White);
 
             spriteBatch.End();
             base.Draw(gameTime);
