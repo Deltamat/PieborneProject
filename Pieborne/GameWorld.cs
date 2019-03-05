@@ -192,7 +192,9 @@ namespace Pieborne
             foreach (GameObject item in gameObjects)
             {
                 item.Draw(spriteBatch);
+                #if DEBUG
                 DrawCollisionBox(item);
+                #endif
             }
             for (int i = 0; i < Player.Instance.Health; i++)
             {
