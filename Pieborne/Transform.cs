@@ -11,6 +11,7 @@ namespace Pieborne
     public class Transform : Component
     {
         public float verticalVelocity = 200;
+        public Vector2 velocity;
 
         Vector2 position;
         public Vector2 Position
@@ -32,7 +33,13 @@ namespace Pieborne
 
         public void Translate(Vector2 translation)
         {
-            position += translation;
+            velocity = translation;
+            Gravity fetcher = (Gravity)GetGameObject.GetComponent("Gravity");
+            if (fetcher.IsFalling == false)
+            {
+                velocity = Vector2.Zero;
+            }
+            position += velocity;
         }
     }
 }

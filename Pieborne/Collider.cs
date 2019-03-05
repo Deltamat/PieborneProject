@@ -18,13 +18,13 @@ namespace Pieborne
                 if (GetGameObject.CollisionBox.Center.X < otherObject.CollisionBox.Center.X) // højre til venstre
                 {
                     int t = GetGameObject.CollisionBox.Right - otherObject.CollisionBox.Left;
-                    GetGameObject.Transform.Translate(new Vector2(-t, 0));
+                    GetGameObject.Transform.Translate(new Vector2(-t + 1, 0));
                 }
 
                 else if (GetGameObject.CollisionBox.Center.X > otherObject.CollisionBox.Center.X) // venstre til højre
                 {
                     int t = GetGameObject.CollisionBox.Left - otherObject.CollisionBox.Right;
-                    GetGameObject.Transform.Translate(new Vector2(-t, 0));
+                    GetGameObject.Transform.Translate(new Vector2(-t + 1, 0));
                 }
             }
 
@@ -33,7 +33,7 @@ namespace Pieborne
                 if (GetGameObject.CollisionBox.Center.Y < otherObject.CollisionBox.Center.Y) // oppefra ned
                 {
                     int t = GetGameObject.CollisionBox.Bottom - otherObject.CollisionBox.Top;
-                    GetGameObject.Transform.Translate(new Vector2(0, -t));
+                    GetGameObject.Transform.Translate(new Vector2(0, -t + 1));
 
                     Gravity tmp = (Gravity)GetGameObject.GetComponent("Gravity");
                     if (otherObject.GetComponent("Terrain") != null)
@@ -45,7 +45,7 @@ namespace Pieborne
                 else if (GetGameObject.CollisionBox.Center.Y > otherObject.CollisionBox.Center.Y) // nedefra op
                 {
                     int t = GetGameObject.CollisionBox.Top - otherObject.CollisionBox.Bottom;
-                    GetGameObject.Transform.Translate(new Vector2(0, -t));
+                    GetGameObject.Transform.Translate(new Vector2(0, -t + 1));
                 }
             }
         }
