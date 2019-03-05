@@ -9,7 +9,7 @@ namespace Pieborne
 {
     public interface IState
     {
-        void Enter(Enemy enemy);
+        void Enter(Enemy parent);
         void Exit();
         void Execute();
     }
