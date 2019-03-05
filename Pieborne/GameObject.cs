@@ -104,6 +104,16 @@ namespace Pieborne
                         }
                     }
                     break;
+
+                case "Beer":
+                    foreach (Component item in components)
+                    {
+                        if (item.GetType() == typeof(Beer))
+                        {
+                            return item;
+                        }
+                    }
+                    break;
             }
             return null;
         }

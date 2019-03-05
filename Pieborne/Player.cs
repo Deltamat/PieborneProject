@@ -12,6 +12,18 @@ namespace Pieborne
         public static Vector2 position;
         float speed;
         Vector2 startPos;
+        int health;
+        public int Health
+        {
+            get
+            {
+                return health;
+            }
+            set
+            {
+                health = value;
+            }
+        }
 
 
         static Player instance;
@@ -31,6 +43,7 @@ namespace Pieborne
         {
             this.speed = speed;
             startPos = startPosition;
+            health = 10;
         }
 
         public override void Attach(GameObject gameObject)
@@ -56,7 +69,7 @@ namespace Pieborne
 
             direction *= speed;
 
-            GetGameObject.Transform.Position += (direction * GameWorld.deltaTime);
+            GetGameObject.Transform.Translate(direction * GameWorld.deltaTime);
         }
 
         public void Jump()

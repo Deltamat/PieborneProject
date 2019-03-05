@@ -11,6 +11,13 @@ namespace Pieborne
     {
         public void Collision(GameObject otherObject)
         {
+            Beer beer = (Beer)otherObject.GetComponent("Beer");
+            if (beer != null) 
+            {
+                GameWorld.gameObjectsToRemove.Add(otherObject);
+                return;
+            }
+
             Vector2 difference = GetGameObject.Transform.Position - otherObject.Transform.Position;
 
             if (Math.Abs(difference.X) > Math.Abs(difference.Y)) // hvis x forskellen er størst så skal den køre højre/venstre kollision
@@ -46,6 +53,7 @@ namespace Pieborne
                 {
                     int t = GetGameObject.CollisionBox.Top - otherObject.CollisionBox.Bottom;
                     GetGameObject.Transform.Translate(new Vector2(0, -t + 1));
+                    GetGameObject.Transform.verticalVelocity = 0;
                 }
             }
         }
