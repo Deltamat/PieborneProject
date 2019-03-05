@@ -8,9 +8,11 @@ namespace Pieborne
 {
     class ChargingState : IState
     {
-        public void Enter(GameObject gameObject)
+        private Enemy parent;
+
+        public void Enter(Enemy parent)
         {
-            throw new NotImplementedException();
+            this.parent = parent;
         }
 
         public void Execute()
@@ -20,7 +22,7 @@ namespace Pieborne
 
         public void Exit()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

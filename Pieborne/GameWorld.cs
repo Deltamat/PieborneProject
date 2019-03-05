@@ -24,7 +24,7 @@ namespace Pieborne
         SpriteFont font;
         GameObject g;
         GameObject e;
-        GameObject s;
+        
         Texture2D heart;
         public static AnimatedGameObject ago;
 
