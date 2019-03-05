@@ -178,7 +178,9 @@ namespace Pieborne
             foreach (GameObject item in gameObjects)
             {
                 item.Draw(spriteBatch);
+                #if DEBUG
                 DrawCollisionBox(item);
+                #endif
             }
 
             Gravity tmp = (Gravity)g.GetComponent("Gravity");
