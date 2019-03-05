@@ -40,7 +40,7 @@ namespace Pieborne
             //    GetGameObject.Transform.verticalVelocity = 13.37f;
             //}
 
-            if (GetGameObject.Transform.verticalVelocity < 1000 && IsFalling == true)
+            if (GetGameObject.Transform.verticalVelocity < 700 && IsFalling == true)
             {
                 GetGameObject.Transform.verticalVelocity += (float)Math.Pow(4,2);
             }

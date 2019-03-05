@@ -25,14 +25,27 @@ namespace Pieborne
         GameObject e;
         GameObject s;
 
-        public GameWorld()
+        static GameWorld instance;
+        static public GameWorld Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameWorld();
+                }
+                return instance;
+            }
+        }
+
+        private GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
-            graphics.IsFullScreen = true;
         }
 
         /// <summary>
@@ -75,7 +88,7 @@ namespace Pieborne
             g = new GameObject();
             g.AddComponent(new SpriteRenderer("test"));
             g.AddComponent(new Collider());
-            g.AddComponent(new Player(300, Vector2.Zero));
+            g.AddComponent(new Player(300, new Vector2(20)));
             g.AddComponent(new Gravity());
             g.LoadContent(Content);
 
@@ -92,12 +105,7 @@ namespace Pieborne
 
             for (int i = 0; i < 100; i++)
             {
-                s = new GameObject();
-                s.Transform.Position = new Vector2(16 * i, 1000);
-                s.AddComponent(new Collider());
-                s.AddComponent(new SpriteRenderer("bricks/Brick Black"));
-                s.AddComponent(new Terrain());
-                s.LoadContent(Content);
+                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i, 1000));
             }
              
             GameObject singleBlock = new GameObject();

@@ -13,10 +13,12 @@ namespace Pieborne
     {
         public Texture2D sprite;
         string spriteName;
+        
 
         public SpriteRenderer(string spriteName)
         {
             this.spriteName = spriteName;
+            sprite = GameWorld.Instance.Content.Load<Texture2D>(spriteName);
 
         }
 
