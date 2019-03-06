@@ -12,7 +12,16 @@ namespace Pieborne
     public class GameObject
     {
         public List<Component> components = new List<Component>();
+
         public SpriteRenderer sr;
+        Collider collider;
+        Player player;
+        Terrain terrain;
+        Gravity gravity;
+        Beer beer;
+        Projectile projectile;
+        Enemy enemy;
+        public string type;
 
         Transform transform;
         public Transform Transform
@@ -50,13 +59,43 @@ namespace Pieborne
         {
             component.Attach(this);
             components.Add(component);
+
             if (component is SpriteRenderer)
             {
                 sr = (SpriteRenderer)component;
             }
-            else if (true)
+            else if (component is Collider)
             {
-
+                collider = (Collider)component;
+            }
+            else if (component is Player)
+            {
+                player = (Player)component;
+                type = "Player";
+            }
+            else if (component is Terrain)
+            {
+                terrain = (Terrain)component;
+                type = "Terrain";
+            }
+            else if (component is Gravity)
+            {
+                gravity = (Gravity)component;
+            }
+            else if (component is Beer)
+            {
+                beer = (Beer)component;
+                type = "Beer";
+            }
+            else if (component is Projectile)
+            {
+                projectile = (Projectile)component;
+                type = "Projectile";
+            }
+            else if (component is Enemy)
+            {
+                enemy = (Enemy)component;
+                type = "Enemy";
             }
 
         }
@@ -69,65 +108,25 @@ namespace Pieborne
                     return sr;
 
                 case "Collider":
-                    foreach (Component item in components)
-                    {
-                        if (item.GetType() == typeof(Collider))
-                        {
-                            return item;
-                        }
-                    }
-                    break;
+                    return collider;
 
                 case "Player":
-                    foreach (Component item in components)
-                    {
-                        if (item.GetType() == typeof(Player))
-                        {
-                            return item;
-                        }
-                    }
-                    break;
+                    return player;
 
                 case "Terrain":
-                    foreach (Component item in components)
-                    {
-                        if (item.GetType() == typeof(Terrain))
-                        {
-                            return item;
-                        }
-                    }
-                    break;
+                    return terrain;
 
                 case "Gravity":
-                    foreach (Component item in components)
-                    {
-                        if (item.GetType() == typeof(Gravity))
-                        {
-                            return item;
-                        }
-                    }
-                    break;
+                    return gravity;
 
                 case "Beer":
-                    foreach (Component item in components)
-                    {
-                        if (item.GetType() == typeof(Beer))
-                        {
-                            return item;
-                        }
-                    }
-                    break;
+                    return beer;
 
-                case "AnimatedGameObject":
-                    
-                    foreach (Component item in components)
-                    {
-                        if (item.GetType() == typeof(AnimatedGameObject))
-                        {
-                            return item;
-                        }
-                    }
-                    break;
+                case "Projectile":
+                    return projectile;
+
+                case "Enemy":
+                    return enemy;
             }
             return null;
         }

@@ -30,6 +30,24 @@ namespace Pieborne
                 direction.Normalize();
             }
 
+            // rotate sprite
+            if (direction == new Vector2(1,0))
+            {
+                GetGameObject.sr.rotation = MathHelper.ToRadians(0);
+            }
+            else if (direction == new Vector2(-1, 0))
+            {
+                GetGameObject.sr.rotation = MathHelper.ToRadians(180);
+            }
+            else if (direction == new Vector2(0, 1))
+            {
+                GetGameObject.sr.rotation = MathHelper.ToRadians(90);
+            }
+            else if (direction == new Vector2(0, -1))
+            {
+                GetGameObject.sr.rotation = MathHelper.ToRadians(270);
+            }
+
             direction *= speed;
             GetGameObject.Transform.Translate(direction * GameWorld.deltaTime);
         }

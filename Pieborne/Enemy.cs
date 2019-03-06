@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pieborne
 {
-    public class Enemy : Component
+    abstract public class Enemy : Component
     {
         protected IState currentState;
         public float speed;
@@ -17,6 +17,18 @@ namespace Pieborne
         protected Vector2 startPos;
         public Vector2 directionLeft;
         public Vector2 directionRight;
+        protected int health;
+        public int Health
+        {
+            get
+            {
+                return health;
+            }
+            set
+            {
+                health = value;
+            }
+        }
         
 
         public Enemy(float speed, Vector2 startPos)

@@ -23,12 +23,6 @@ namespace Pieborne
         Texture2D collisionTexture;
         SpriteFont font;
         public double shootTimer;
-
-        public SpriteRenderer spriteRenderer;
-        public Gravity gravity;
-        public Transform transform;
-        public Collider collider;
-        public Terrain terrain;
         
 
         GameObject g;
@@ -114,7 +108,6 @@ namespace Pieborne
             e = new GameObject();
             e.Transform.Position = new Vector2(800, 600);
             e.AddComponent(new SpriteRenderer("beer"));
-            e.AddComponent(new Collider());
             e.AddComponent(new Terrain());
 
             e.AddComponent(new Beer());
@@ -129,7 +122,7 @@ namespace Pieborne
             }
 
             GameObject singleBlock = new GameObject();
-            singleBlock.Transform.Position = new Vector2(784, 800);
+            singleBlock.Transform.Position = new Vector2(784, 850);
             singleBlock.AddComponent(new SpriteRenderer("bricks/Brick Black"));
             singleBlock.AddComponent(new Collider());
             singleBlock.AddComponent(new Terrain());
@@ -172,7 +165,7 @@ namespace Pieborne
 
                 foreach (GameObject otherItem in gameObjects)
                 {
-                    if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox) && otherItem.GetComponent("Terrain") == null)
+                    if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox) && otherItem.type != "Terrain" && otherItem.type != "Beer")
                     {
                         Collider temp = (Collider)otherItem.GetComponent("Collider");
                         temp.Collision(item);
@@ -214,7 +207,7 @@ namespace Pieborne
             {
                 item.Draw(spriteBatch);
                 #if DEBUG
-                //DrawCollisionBox(item);
+                DrawCollisionBox(item);
                 #endif
             }
             for (int i = 0; i < Player.Instance.Health; i++)
