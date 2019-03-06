@@ -21,9 +21,13 @@ namespace Pieborne
 
         public void Execute()
         {
-            if (Vector2.Distance(parent.GetGameObject.Transform.Position, Player.position) < 300)
+            if (Vector2.Distance(parent.GetGameObject.Transform.Position, Player.position) < 300 && parent.GetType() == typeof(EnemyRanged))
             {
                 parent.ChangeState(new ShootingState());
+            }
+            else if(Vector2.Distance(parent.GetGameObject.Transform.Position, Player.position) < 250 && parent.GetType() == typeof(EnemyMelee))
+            {
+                parent.ChangeState(new ChargingState());
             }
             patrolTimer += GameWorld.deltaTime;
             //move to the left for 2 seconds

@@ -23,7 +23,7 @@ namespace Pieborne
         public void Execute()
         {
             //AI der skyder mod Player's position
-            //Player.position
+            Player.position
         }
 
         public void Exit()
