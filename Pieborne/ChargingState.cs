@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Pieborne
 {
+    /// <summary>
+    /// kigger efter player's position for derefter at "hoppe" i lige linje efter player's 
+    /// position efter en kort "charge up"
+    /// </summary>
     class ChargingState : IState
     {
         private Enemy parent;

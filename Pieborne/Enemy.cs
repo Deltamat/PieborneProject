@@ -11,10 +11,10 @@ namespace Pieborne
 {
     public class Enemy : Component
     {
-        private IState currentState;
+        protected IState currentState;
         public float speed;
         public Vector2 currentDirection;
-        private Vector2 startPos;
+        protected Vector2 startPos;
         public Vector2 directionLeft;
         public Vector2 directionRight;
         
