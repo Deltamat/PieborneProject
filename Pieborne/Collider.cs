@@ -11,22 +11,29 @@ namespace Pieborne
     {
         public void Collision(GameObject otherObject)
         {
-            Beer beer = (Beer)otherObject.GetComponent("Beer");
-            if (beer != null) 
+            
+            if (otherObject.type == "Beer" && GetGameObject.type == "Player") 
             {
                 GameWorld.gameObjectsToRemove.Add(otherObject);
+                Player.Instance.Health++;
                 return;
             }
 
-            if (GetGameObject.type == "Projectile" && otherObject.type == "Terrain")
+            if (GetGameObject.type == "Projectile" && (otherObject.type == "Terrain" || otherObject.type == "Enemy")) // hvis projectil rammer mur, fjern projectil
             {
                 GameWorld.gameObjectsToRemove.Add(GetGameObject);
+                if (otherObject.type == "Enemy")
+                {
+                    Enemy enemy = (Enemy)otherObject.GetComponent("Enemy");
+                    enemy.Health--;
+
+                }
                 return;
             }
 
             Vector2 difference = GetGameObject.Transform.Position - otherObject.Transform.Position;
 
-            if (otherObject.type != "Projectile")
+            if (GetGameObject.type != "Projectile" && otherObject.type != "Projectile")
             {
                 if (Math.Abs(difference.X) > Math.Abs(difference.Y)) // hvis x forskellen er størst så skal den køre højre/venstre kollision
                 {

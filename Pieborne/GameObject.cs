@@ -12,6 +12,7 @@ namespace Pieborne
     public class GameObject
     {
         public List<Component> components = new List<Component>();
+
         public SpriteRenderer sr;
         Collider collider;
         Player player;
@@ -19,6 +20,7 @@ namespace Pieborne
         Gravity gravity;
         Beer beer;
         Projectile projectile;
+        Enemy enemy;
         public string type;
 
         Transform transform;
@@ -90,6 +92,11 @@ namespace Pieborne
                 projectile = (Projectile)component;
                 type = "Projectile";
             }
+            else if (component is Enemy)
+            {
+                enemy = (Enemy)component;
+                type = "Enemy";
+            }
 
         }
 
@@ -117,6 +124,9 @@ namespace Pieborne
 
                 case "Projectile":
                     return projectile;
+
+                case "Enemy":
+                    return enemy;
             }
             return null;
         }

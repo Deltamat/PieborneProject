@@ -115,7 +115,6 @@ namespace Pieborne
             e = new GameObject();
             e.Transform.Position = new Vector2(800, 600);
             e.AddComponent(new SpriteRenderer("beer"));
-            e.AddComponent(new Collider());
             e.AddComponent(new Terrain());
 
             e.AddComponent(new Beer());
@@ -130,7 +129,7 @@ namespace Pieborne
             }
 
             GameObject singleBlock = new GameObject();
-            singleBlock.Transform.Position = new Vector2(784, 800);
+            singleBlock.Transform.Position = new Vector2(784, 850);
             singleBlock.AddComponent(new SpriteRenderer("bricks/Brick Black"));
             singleBlock.AddComponent(new Collider());
             singleBlock.AddComponent(new Terrain());
@@ -173,7 +172,7 @@ namespace Pieborne
 
                 foreach (GameObject otherItem in gameObjects)
                 {
-                    if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox) && otherItem.type != "Terrain")
+                    if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox) && otherItem.type != "Terrain" && otherItem.type != "Beer")
                     {
                         Collider temp = (Collider)otherItem.GetComponent("Collider");
                         temp.Collision(item);
