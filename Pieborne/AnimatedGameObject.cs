@@ -10,7 +10,6 @@ namespace Pieborne
 {
     public class AnimatedGameObject : GameObject
     {
-
         public override Rectangle CollisionBox
         {
             get
@@ -38,8 +37,6 @@ namespace Pieborne
                     animationRectangles[i, j] = new Rectangle(i * (500 / 10), 50 * j, (500 / 10), 300 / 6);
                 }
             }
-
-
         }
 
         public override void Update(GameTime gameTime)
@@ -48,7 +45,7 @@ namespace Pieborne
             {
                 sr = (SpriteRenderer)GetComponent("SpriteRenderer");
             }
-
+            
             base.Update(gameTime);
             timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
             currentAnimationIndexX = (int)(timeElapsed * animationFPS);
@@ -68,8 +65,6 @@ namespace Pieborne
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //base.Draw(spriteBatch);
-
             if (sr != null)
             {
                 spriteBatch.Draw(
@@ -82,9 +77,7 @@ namespace Pieborne
                 1f,
                 SpriteEffects.None,
                 0.9f);
-            }
-            
-
+            }           
         }
     }
 }
