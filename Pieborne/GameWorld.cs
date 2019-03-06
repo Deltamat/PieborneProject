@@ -122,6 +122,8 @@ namespace Pieborne
             }
 
             TerrainFactory.Instance.Create("Brick", new Vector2(784, 859));
+
+            EnemyFactory.Instance.Create("Rat", new Vector2(100));
         }
 
         /// <summary>
