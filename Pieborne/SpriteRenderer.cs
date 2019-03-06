@@ -20,8 +20,6 @@ namespace Pieborne
         {
             this.spriteName = spriteName;
             sprite = GameWorld.Instance.Content.Load<Texture2D>(spriteName);
-
-
         }
 
         public override void Draw(SpriteBatch spriteBatch)
