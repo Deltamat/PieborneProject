@@ -18,14 +18,6 @@ namespace Pieborne
             }
         }
 
-        public AnimatedGameObject GetAGO
-        {
-            get
-            {
-                return this;
-            }
-        }
-
         Rectangle[,] animationRectangles = new Rectangle[10,6];
         float animationFPS = 10;
         int currentAnimationIndexY = 0;
@@ -33,11 +25,11 @@ namespace Pieborne
         int currentAnimation;
         private double timeElapsed = 0;
         private new SpriteRenderer sr;
-        public string runAnimation;
+        public string animationType;
+        private bool firstTime = true;
 
         public AnimatedGameObject(int frameCount, float animationFPS) : base()
-        {
-            
+        {            
             this.animationFPS = animationFPS;
             animationRectangles = new Rectangle[10, 6];
             for (int j = 0; j < 6; j++)
@@ -58,22 +50,24 @@ namespace Pieborne
             
             base.Update(gameTime);
 
-            Idle(gameTime);
-
-            //timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
-            //currentAnimationIndexX = (int)(timeElapsed * animationFPS);
-
-            //if (currentAnimationIndexX == 10)
-            //{
-            //    currentAnimationIndexX = 0;
-            //    timeElapsed = 0;
-
-            //    currentAnimationIndexY++;
-            //    if (currentAnimationIndexY == 6)
-            //    {
-            //        currentAnimationIndexY = 0;
-            //    }
-            //}
+            switch (animationType)
+            {
+                case "idle":
+                    Idle(gameTime);
+                    break;
+                case "walk":
+                    Walk(gameTime);
+                    break;
+                case "jump":
+                    Jump(gameTime);
+                    break;
+                case "throw":
+                    Throw(gameTime);
+                    break;
+                case "punch":
+                    Punch(gameTime);
+                    break;
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -181,6 +175,11 @@ namespace Pieborne
 
         private void Throw(GameTime gameTime)
         {
+            if (firstTime == true)
+            {
+                timeElapsed = 0;
+                firstTime = false;
+            }
             timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
             currentAnimation = (int)(timeElapsed * animationFPS);
             switch (currentAnimation)
@@ -214,6 +213,7 @@ namespace Pieborne
             {
                 currentAnimation = 0;
                 timeElapsed = 0;
+                firstTime = true;
             }
         }
 

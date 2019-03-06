@@ -22,6 +22,7 @@ namespace Pieborne
             {
                 ProjectileFactory.Instance.Create("Kunai", Player.position, direction);
                 GameWorld.Instance.shootTimer = 0;
+                p.shooting = true;
             }
         }
     }

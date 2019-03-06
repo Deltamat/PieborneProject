@@ -121,17 +121,7 @@ namespace Pieborne
                 TerrainFactory.Instance.Create("Brick", new Vector2(8, 16 * i + 8));
             }
 
-            GameObject singleBlock = new GameObject();
-            singleBlock.Transform.Position = new Vector2(784, 850);
-            singleBlock.AddComponent(new SpriteRenderer("bricks/Brick Black"));
-            singleBlock.AddComponent(new Collider());
-            singleBlock.AddComponent(new Terrain());
-            singleBlock.LoadContent(Content);
-
-
-
-
-            // TODO: use this.Content to load your game content here
+            TerrainFactory.Instance.Create("Brick", new Vector2(784, 859));
         }
 
         /// <summary>
