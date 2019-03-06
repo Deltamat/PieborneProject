@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Pieborne
 {
+    /// <summary>
+    /// går til højre og venstre skiftevis henholdsvis i 2 sekunder hver vej
+    /// </summary>
     class PatrolState : IState
     {
         private Enemy parent;
@@ -17,6 +21,10 @@ namespace Pieborne
 
         public void Execute()
         {
+            if (Vector2.Distance(parent.GetGameObject.Transform.Position, Player.position) < 300)
+            {
+                parent.ChangeState(new ShootingState());
+            }
             patrolTimer += GameWorld.deltaTime;
             //move to the left for 2 seconds
             if (patrolTimer < 2)

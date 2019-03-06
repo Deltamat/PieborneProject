@@ -11,8 +11,10 @@ namespace Pieborne
 {
     class EnemyRanged : Enemy
     {
+        
         public EnemyRanged(float speed, Vector2 startPos) : base(speed, startPos)
         {
+            
         }
 
         public override void Attach(GameObject gameObject)
