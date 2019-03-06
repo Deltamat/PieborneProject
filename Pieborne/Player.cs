@@ -56,8 +56,13 @@ namespace Pieborne
         {
             InputHandler.Instance.Execute(this);
             position = GetGameObject.Transform.Position; //så andre klasser kan se på player position, 
-            
 
+            //GetAGO
+
+            if (GetGameObject.Transform.Position.Y > 1080)
+            {
+                GetGameObject.Transform.Position = new Vector2(500);
+            }
         }
 
         public void Move(Vector2 direction)
