@@ -13,7 +13,7 @@ namespace Pieborne
     class ShootingState : IState
     {
         private Enemy parent;
-        
+        private Vector2 direction;
 
         public void Enter(Enemy parent)
         {
@@ -22,8 +22,13 @@ namespace Pieborne
 
         public void Execute()
         {
+            if (Player.position != Vector2.Zero)
+            {
+                direction = Player.position;
+                direction.Normalize();
+            }
             //AI der skyder mod Player's position
-            Player.position
+            ProjectileFactory.Instance.Create("Stjerne", parent.GetGameObject.Transform.Position, direction);
         }
 
         public void Exit()
