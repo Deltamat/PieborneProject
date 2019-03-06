@@ -36,7 +36,7 @@ namespace Pieborne
                 case "Brick":
                     gameObject.AddComponent(new Terrain());
                     gameObject.AddComponent(new SpriteRenderer("bricks/Brick Black"));
-                    gameObject.AddComponent(new Collider());
+                    //gameObject.AddComponent(new Collider());
                     break;
             }
             gameObject.Transform.Position = startPos;

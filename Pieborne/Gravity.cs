@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace Pieborne
 {
-    public class Gravity : Component
+    class Gravity : Component
     {
         bool isFalling = true;
         public bool IsFalling
