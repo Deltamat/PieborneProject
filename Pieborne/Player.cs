@@ -56,7 +56,6 @@ namespace Pieborne
         {
             InputHandler.Instance.Execute(this);
             position = GetGameObject.Transform.Position; //så andre klasser kan se på player position, 
-            
 
         }
 

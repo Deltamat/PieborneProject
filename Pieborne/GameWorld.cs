@@ -103,8 +103,7 @@ namespace Pieborne
             g = new AnimatedGameObject(10,10);
             g.AddComponent(new SpriteRenderer("cat_fighter_sprite"));
             g.AddComponent(new Collider());
-            //g.AddComponent(new AnimatedGameObject(10, 10, g));
-            g.AddComponent(new Player(300, new Vector2(700)));
+            g.AddComponent(new Player(300, new Vector2(100)));
             g.AddComponent(new Gravity());
             g.LoadContent(Content);
 
@@ -135,7 +134,7 @@ namespace Pieborne
             singleBlock.AddComponent(new Terrain());
             singleBlock.LoadContent(Content);
 
-
+            EnemyFactory.Instance.Create("Rat", new Vector2(100, 950));
 
 
             // TODO: use this.Content to load your game content here

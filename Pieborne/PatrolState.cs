@@ -14,6 +14,7 @@ namespace Pieborne
     {
         private Enemy parent;
         private float patrolTimer = 0;
+
         public void Enter(Enemy parent)
         {
             this.parent = parent;
@@ -34,18 +35,18 @@ namespace Pieborne
             if (patrolTimer < 2)
             {
                 parent.directionLeft *= parent.speed;
-                parent.GetGameObject.Transform.Position += (parent.directionLeft * GameWorld.deltaTime);
+                parent.GetGameObject.Transform.Position += parent.directionLeft * GameWorld.deltaTime;
             }
             //resets timer so the enemy can move left for 2 seconds again
             else if (patrolTimer > 4)
             {
-
+                patrolTimer = 0;
             }
             //moves to the right for 2 seconds
             else if (patrolTimer > 2)
             {
                 parent.directionRight *= parent.speed;
-                parent.GetGameObject.Transform.Position += (parent.directionRight * GameWorld.deltaTime);
+                parent.GetGameObject.Transform.Position += parent.directionRight * GameWorld.deltaTime;
             }
         }
 
