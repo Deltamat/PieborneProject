@@ -108,10 +108,7 @@ namespace Pieborne
             g.AddComponent(new Gravity());
             g.LoadContent(Content);
 
-            for (int i = 0; i < 30; i++)
-            {
-                
-            }
+           
             e = new GameObject();
             e.Transform.Position = new Vector2(800, 600);
             e.AddComponent(new SpriteRenderer("beer"));
