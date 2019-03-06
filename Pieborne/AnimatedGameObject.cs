@@ -14,7 +14,7 @@ namespace Pieborne
         {
             get
             {
-                return new Rectangle((int)(Transform.Position.X - 50 * 0.5), (int)(Transform.Position.Y - 50 * 0.5), 50, 50);
+                return new Rectangle((int)(Transform.Position.X - 28 * 0.5), (int)(Transform.Position.Y - 28 * 0.5), 28, 28);
             }
         }
 

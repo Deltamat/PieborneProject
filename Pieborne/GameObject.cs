@@ -12,6 +12,8 @@ namespace Pieborne
     public class GameObject
     {
         public List<Component> components = new List<Component>();
+        public SpriteRenderer sr;
+
         Transform transform;
         public Transform Transform
         {
@@ -25,8 +27,7 @@ namespace Pieborne
         {
             get
             {
-                    SpriteRenderer sr = (SpriteRenderer)GetComponent("SpriteRenderer");
-                    return new Rectangle((int)(transform.Position.X - sr.sprite.Width * 0.5), (int)(transform.Position.Y - sr.sprite.Height * 0.5), sr.sprite.Width, sr.sprite.Height);
+                return new Rectangle((int)(transform.Position.X - sr.sprite.Width * 0.5), (int)(transform.Position.Y - sr.sprite.Height * 0.5), sr.sprite.Width, sr.sprite.Height);
             }
         }
 
@@ -49,6 +50,15 @@ namespace Pieborne
         {
             component.Attach(this);
             components.Add(component);
+            if (component is SpriteRenderer)
+            {
+                sr = (SpriteRenderer)component;
+            }
+            else if (true)
+            {
+
+            }
+
         }
 
         public Component GetComponent(string component)
@@ -56,14 +66,7 @@ namespace Pieborne
             switch (component)
             {
                 case "SpriteRenderer":
-                    foreach (Component item in components)
-                    {
-                        if (item.GetType() == typeof(SpriteRenderer))
-                        {
-                            return item;
-                        }
-                    }
-                    break;
+                    return sr;
 
                 case "Collider":
                     foreach (Component item in components)
@@ -116,6 +119,7 @@ namespace Pieborne
                     break;
 
                 case "AnimatedGameObject":
+                    
                     foreach (Component item in components)
                     {
                         if (item.GetType() == typeof(AnimatedGameObject))

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pieborne
 {
-    class Terrain : Component
+    public class Terrain : Component
     {
 
     }

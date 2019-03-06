@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Pieborne
 {
+    /// <summary>
+    /// Fjende skyder efter player's position
+    /// </summary>
     class ShootingState : IState
     {
         private Enemy parent;
@@ -19,7 +22,8 @@ namespace Pieborne
 
         public void Execute()
         {
-            
+            //AI der skyder mod Player's position
+            Player.position
         }
 
         public void Exit()
