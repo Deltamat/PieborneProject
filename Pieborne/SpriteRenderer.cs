@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pieborne
 {
-    class SpriteRenderer : Component
+    public class SpriteRenderer : Component
     {
         public Texture2D sprite;
         string spriteName;
@@ -19,6 +19,7 @@ namespace Pieborne
         {
             this.spriteName = spriteName;
             sprite = GameWorld.Instance.Content.Load<Texture2D>(spriteName);
+
 
         }
 
