@@ -22,12 +22,14 @@ namespace Pieborne
         float animationFPS = 10;
         int currentAnimationIndexY = 0;
         int currentAnimationIndexX = 0;
+        int currentAnimation;
         private double timeElapsed = 0;
-        SpriteRenderer sr;
+        private new SpriteRenderer sr;
+        public string animationType;
+        private bool firstTime = true;
 
         public AnimatedGameObject(int frameCount, float animationFPS) : base()
-        {
-            
+        {            
             this.animationFPS = animationFPS;
             animationRectangles = new Rectangle[10, 6];
             for (int j = 0; j < 6; j++)
@@ -47,19 +49,24 @@ namespace Pieborne
             }
             
             base.Update(gameTime);
-            timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
-            currentAnimationIndexX = (int)(timeElapsed * animationFPS);
 
-            if (currentAnimationIndexX == 10)
+            switch (animationType)
             {
-                currentAnimationIndexX = 0;
-                timeElapsed = 0;
-                
-                currentAnimationIndexY++;
-                if (currentAnimationIndexY == 6)
-                {
-                    currentAnimationIndexY = 0;
-                }
+                case "idle":
+                    Idle(gameTime);
+                    break;
+                case "walk":
+                    Walk(gameTime);
+                    break;
+                case "jump":
+                    Jump(gameTime);
+                    break;
+                case "throw":
+                    Throw(gameTime);
+                    break;
+                case "punch":
+                    Punch(gameTime);
+                    break;
             }
         }
 
@@ -78,6 +85,186 @@ namespace Pieborne
                 SpriteEffects.None,
                 0.9f);
             }           
+        }
+
+        private void Idle(GameTime gameTime)
+        {
+            timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
+            currentAnimation = (int)(timeElapsed * animationFPS);
+            switch (currentAnimation)
+            {
+                case 0:
+                    currentAnimationIndexX = 0;
+                    currentAnimationIndexY = 0;
+                    break;
+                case 1:
+                    currentAnimationIndexX = 0;
+                    currentAnimationIndexY = 2;
+                    break;
+                case 2:
+                    currentAnimationIndexX = 0;
+                    currentAnimationIndexY = 0;
+                    break;
+                case 3:
+                    currentAnimationIndexX = 1;
+                    currentAnimationIndexY = 2;
+                    break;
+            }
+            if (currentAnimation > 3)
+            {
+                currentAnimation = 0;
+                timeElapsed = 0;
+            }
+        }
+
+        private void Walk(GameTime gameTime)
+        {
+            timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
+            currentAnimation = (int)(timeElapsed * animationFPS);
+            switch (currentAnimation)
+            {
+                case 0:
+                    currentAnimationIndexX = 3;
+                    currentAnimationIndexY = 0;
+                    break;
+                case 1:
+                    currentAnimationIndexX = 4;
+                    currentAnimationIndexY = 0;
+                    break;
+                case 2:
+                    currentAnimationIndexX = 1;
+                    currentAnimationIndexY = 2;
+                    break;
+            }
+            if (currentAnimation > 2)
+            {
+                currentAnimation = 0;
+                timeElapsed = 0;
+            }
+        }
+
+        private void Jump(GameTime gameTime)
+        {
+            timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
+            currentAnimation = (int)(timeElapsed * animationFPS);
+            switch (currentAnimation)
+            {
+                case 0:
+                    currentAnimationIndexX = 0;
+                    currentAnimationIndexY = 0;
+                    break;
+                case 1:
+                    currentAnimationIndexX = 7;
+                    currentAnimationIndexY = 0;
+                    break;
+                case 2:
+                    currentAnimationIndexX = 9;
+                    currentAnimationIndexY = 2;
+                    break;
+                case 3:
+                    currentAnimationIndexX = 0;
+                    currentAnimationIndexY = 3;
+                    break;
+            }
+            if (currentAnimation > 3)
+            {
+                currentAnimation = 0;
+                timeElapsed = 0.2;
+            }
+        }
+
+        private void Throw(GameTime gameTime)
+        {
+            if (firstTime == true)
+            {
+                timeElapsed = 0;
+                firstTime = false;
+            }
+            timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
+            currentAnimation = (int)(timeElapsed * animationFPS);
+            switch (currentAnimation)
+            {
+                case 0:
+                    currentAnimationIndexX = 0;
+                    currentAnimationIndexY = 0;
+                    break;
+                case 1:
+                    currentAnimationIndexX = 6;
+                    currentAnimationIndexY = 1;
+                    break;
+                case 2:
+                    currentAnimationIndexX = 7;
+                    currentAnimationIndexY = 1;
+                    break;
+                case 3:
+                    currentAnimationIndexX = 6;
+                    currentAnimationIndexY = 1;
+                    break;
+                case 4:
+                    currentAnimationIndexX = 8;
+                    currentAnimationIndexY = 1;
+                    break;
+                case 5:
+                    currentAnimationIndexX = 9;
+                    currentAnimationIndexY = 1;
+                    break;
+            }
+            if (currentAnimation > 5)
+            {
+                currentAnimation = 0;
+                timeElapsed = 0;
+                firstTime = true;
+            }
+        }
+
+        private void Punch(GameTime gameTime)
+        {
+            timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
+            currentAnimation = (int)(timeElapsed * animationFPS);
+            switch (currentAnimation)
+            {
+                case 0:
+                    currentAnimationIndexX = 0;
+                    currentAnimationIndexY = 0;
+                    break;
+                case 1:
+                    currentAnimationIndexX = 6;
+                    currentAnimationIndexY = 1;
+                    break;
+                case 2:
+                    currentAnimationIndexX = 7;
+                    currentAnimationIndexY = 1;
+                    break;
+                case 3:
+                    currentAnimationIndexX = 6;
+                    currentAnimationIndexY = 3;
+                    break;
+                case 4:
+                    currentAnimationIndexX = 7;
+                    currentAnimationIndexY = 3;
+                    break;
+                case 5:
+                    currentAnimationIndexX = 6;
+                    currentAnimationIndexY = 1;
+                    break;
+                case 6:
+                    currentAnimationIndexX = 8;
+                    currentAnimationIndexY = 3;
+                    break;
+                case 7:
+                    currentAnimationIndexX = 9;
+                    currentAnimationIndexY = 3;
+                    break;
+                case 8:
+                    currentAnimationIndexX = 0;
+                    currentAnimationIndexY = 0;
+                    break;
+            }
+            if (currentAnimation > 8)
+            {
+                currentAnimation = 0;
+                timeElapsed = 0;
+            }
         }
     }
 }
