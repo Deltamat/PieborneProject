@@ -13,6 +13,7 @@ namespace Pieborne
     {
         public Texture2D sprite;
         string spriteName;
+        public float rotation = 0;
         
 
         public SpriteRenderer(string spriteName)
@@ -25,7 +26,7 @@ namespace Pieborne
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, this.GetGameObject.Transform.Position, null, Color.White, 0f, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(sprite, GetGameObject.Transform.Position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 1f);
         }
 
         public override void LoadContent(ContentManager content)

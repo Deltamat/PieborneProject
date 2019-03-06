@@ -23,12 +23,6 @@ namespace Pieborne
         Texture2D collisionTexture;
         SpriteFont font;
         public double shootTimer;
-
-        public SpriteRenderer spriteRenderer;
-        public Gravity gravity;
-        public Transform transform;
-        public Collider collider;
-        public Terrain terrain;
         
 
         GameObject g;
@@ -179,7 +173,7 @@ namespace Pieborne
 
                 foreach (GameObject otherItem in gameObjects)
                 {
-                    if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox) && otherItem.GetComponent("Terrain") == null)
+                    if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox) && otherItem.type != "Terrain")
                     {
                         Collider temp = (Collider)otherItem.GetComponent("Collider");
                         temp.Collision(item);
@@ -221,7 +215,7 @@ namespace Pieborne
             {
                 item.Draw(spriteBatch);
                 #if DEBUG
-                //DrawCollisionBox(item);
+                DrawCollisionBox(item);
                 #endif
             }
             for (int i = 0; i < Player.Instance.Health; i++)
