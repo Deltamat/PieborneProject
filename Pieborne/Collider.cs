@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pieborne
 {
-    class Collider : Component
+    public class Collider : Component
     {
         public void Collision(GameObject otherObject)
         {
