@@ -100,7 +100,7 @@ namespace Pieborne
             g = new AnimatedGameObject(10,10);
             g.AddComponent(new SpriteRenderer("cat_fighter_sprite"));
             g.AddComponent(new Collider());
-            g.AddComponent(new Player(300, new Vector2(700)));
+            g.AddComponent(new Player(300, new Vector2(100)));
             g.AddComponent(new Gravity());
             g.LoadContent(Content);
 

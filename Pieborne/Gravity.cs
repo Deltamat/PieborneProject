@@ -24,19 +24,6 @@ namespace Pieborne
 
         public override void Update(GameTime gameTime)
         {
-            //if (gravityTimer < 1 && isFalling == true)
-            //{
-            //    GetGameObject.Transform.verticalVelocity++;
-            //    gravityTimer += gameTime.ElapsedGameTime.TotalSeconds;
-
-            //}
-
-            //GetGameObject.Transform.Translate(new Vector2(0, GetGameObject.Transform.verticalVelocity * 0.5f));
-
-            //if (isFalling == false)
-            //{
-            //    GetGameObject.Transform.verticalVelocity = 13.37f;
-            //}
 
             if (GetGameObject.Transform.verticalVelocity < 700 && IsFalling == true)
             {

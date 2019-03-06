@@ -19,7 +19,7 @@ namespace Pieborne
         }
 
         Rectangle[,] animationRectangles = new Rectangle[10,6];
-        float animationFPS = 10;
+        public float animationFPS = 10;
         int currentAnimationIndexY = 0;
         int currentAnimationIndexX = 0;
         int currentAnimation;
