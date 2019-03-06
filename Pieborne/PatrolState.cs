@@ -34,8 +34,9 @@ namespace Pieborne
             //move to the left for 2 seconds
             if (patrolTimer < 2)
             {
+                parent.directionLeft.Normalize();
                 parent.directionLeft *= parent.speed;
-                parent.GetGameObject.Transform.Position += parent.directionLeft * GameWorld.deltaTime;
+                parent.GetGameObject.Transform.Translate(parent.directionLeft * GameWorld.deltaTime);
             }
             //resets timer so the enemy can move left for 2 seconds again
             else if (patrolTimer > 4)
@@ -45,8 +46,9 @@ namespace Pieborne
             //moves to the right for 2 seconds
             else if (patrolTimer > 2)
             {
+                parent.directionRight.Normalize();
                 parent.directionRight *= parent.speed;
-                parent.GetGameObject.Transform.Position += parent.directionRight * GameWorld.deltaTime;
+                parent.GetGameObject.Transform.Translate(parent.directionRight * GameWorld.deltaTime);
             }
         }
 

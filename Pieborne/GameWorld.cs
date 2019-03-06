@@ -97,24 +97,23 @@ namespace Pieborne
             Song song = Content.Load<Song>("Attack of  the Flaming Pie Tins");
             MediaPlayer.Play(song);
 
-            g = new AnimatedGameObject(10,10);
+            g = new AnimatedGameObject(10, 10);
             g.AddComponent(new SpriteRenderer("cat_fighter_sprite"));
             g.AddComponent(new Collider());
             g.AddComponent(new Player(300, new Vector2(100)));
             g.AddComponent(new Gravity());
             g.LoadContent(Content);
 
-            
+
             e = new GameObject();
             e.Transform.Position = new Vector2(800, 600);
             e.AddComponent(new SpriteRenderer("beer"));
-            e.AddComponent(new Terrain());
-
+            //e.AddComponent(new Terrain());
             e.AddComponent(new Beer());
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 20; i++)
             {
-                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i - 1, 1064));
+                TerrainFactory.Instance.Create("Brick", new Vector2(64 * i - 1, 1064));
             }
             for (int i = 0; i < 67; i++)
             {
@@ -123,7 +122,8 @@ namespace Pieborne
 
             TerrainFactory.Instance.Create("Brick", new Vector2(784, 859));
 
-            EnemyFactory.Instance.Create("Rat", new Vector2(100));
+            EnemyFactory.Instance.Create("Rat", new Vector2(1000, 100));
+            EnemyFactory.Instance.Create("RangedRat", new Vector2(900, 100));
         }
 
         /// <summary>
