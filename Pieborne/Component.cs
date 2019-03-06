@@ -12,6 +12,7 @@ namespace Pieborne
     public abstract class Component
     {
         GameObject gameObject;
+        AnimatedGameObject animatedGameObject;
 
         public GameObject GetGameObject
         {
@@ -21,9 +22,21 @@ namespace Pieborne
             }
         }
 
+        public AnimatedGameObject GetAnimatedGameObject
+        {
+            get
+            {
+                return animatedGameObject;
+            }
+        }
+
         public virtual void Attach(GameObject gameObject)
         {
             this.gameObject = gameObject;
+            if (gameObject is AnimatedGameObject)
+            {
+                animatedGameObject = (AnimatedGameObject)gameObject;
+            }
         }
 
         public virtual void LoadContent(ContentManager content)

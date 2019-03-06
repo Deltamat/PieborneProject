@@ -93,9 +93,6 @@ namespace Pieborne
             Background = Content.Load<Texture2D>("BrickyBackground");
             font = Content.Load<SpriteFont>("font");
             heart = Content.Load<Texture2D>("heart");
-            GameObject reee = new GameObject();
-            //ago = new AnimatedGameObject(10, 10);
-            gameObjectsToRemove.Add(reee);
 
             Song song = Content.Load<Song>("Attack of  the Flaming Pie Tins");
             MediaPlayer.Play(song);
@@ -107,10 +104,7 @@ namespace Pieborne
             g.AddComponent(new Gravity());
             g.LoadContent(Content);
 
-            for (int i = 0; i < 30; i++)
-            {
-                
-            }
+            
             e = new GameObject();
             e.Transform.Position = new Vector2(800, 600);
             e.AddComponent(new SpriteRenderer("beer"));
@@ -127,17 +121,7 @@ namespace Pieborne
                 TerrainFactory.Instance.Create("Brick", new Vector2(8, 16 * i + 8));
             }
 
-            GameObject singleBlock = new GameObject();
-            singleBlock.Transform.Position = new Vector2(784, 850);
-            singleBlock.AddComponent(new SpriteRenderer("bricks/Brick Black"));
-            singleBlock.AddComponent(new Collider());
-            singleBlock.AddComponent(new Terrain());
-            singleBlock.LoadContent(Content);
-
-            EnemyFactory.Instance.Create("Rat", new Vector2(100, 950));
-
-
-            // TODO: use this.Content to load your game content here
+            TerrainFactory.Instance.Create("Brick", new Vector2(784, 859));
         }
 
         /// <summary>
