@@ -62,6 +62,7 @@ namespace Pieborne
 
         public void Move(Vector2 direction)
         {
+            
             if (direction != Vector2.Zero)
             {
                 direction.Normalize();
