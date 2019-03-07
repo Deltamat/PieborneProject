@@ -27,6 +27,10 @@ namespace Pieborne
             set
             {
                 health = value;
+                if (health <= 0)
+                {
+                    GameWorld.gameObjectsToRemove.Add(GetGameObject);
+                }
             }
         }
         
