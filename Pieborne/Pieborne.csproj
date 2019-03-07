@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AnimatedGameObject.cs" />
     <Compile Include="Beer.cs" />
+    <Compile Include="BeerFactory.cs" />
     <Compile Include="ChargingState.cs" />
     <Compile Include="Collider.cs" />
     <Compile Include="Component.cs" />
