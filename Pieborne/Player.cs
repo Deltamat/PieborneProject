@@ -13,13 +13,14 @@ namespace Pieborne
         public static Vector2 position;
         float speed;
         Vector2 startPos;
-        Gravity tmp;
+        Gravity fetcher;
         bool isMoving;
         public bool shooting;
         double animationCooldown;
         double immortalTimer;
         public bool immortal = false;
         public float shootingSpeed = 0.5f;
+        public double shootTimer;
 
         int health;
         public int Health
@@ -71,6 +72,7 @@ namespace Pieborne
 
         public override void Update(GameTime gameTime)
         {
+            //Controls temporary immortality
             if (immortal == true)
             {
                 immortalTimer += GameWorld.deltaTime;
@@ -82,11 +84,17 @@ namespace Pieborne
             }
 
             InputHandler.Instance.Execute(this);
-            position = GetGameObject.Transform.Position; //så andre klasser kan se på player position, 
-            tmp = (Gravity)GetGameObject.GetComponent("Gravity");
+            position = GetGameObject.Transform.Position; 
+            fetcher = (Gravity)GetGameObject.GetComponent("Gravity");
 
+            //Shooting cooldown
+            if (shootTimer < shootingSpeed)
+            {
+                shootTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            }
 
-            if (shooting == true)
+            //Controls animations
+            if (shooting == true) //Shooting animation
             {
                 animationCooldown += gameTime.ElapsedGameTime.TotalSeconds;
                 GetAnimatedGameObject.animationType = "throw";
@@ -96,33 +104,41 @@ namespace Pieborne
                     animationCooldown = 0;
                 }
             }
-            else if (tmp.IsFalling == true)
+            else if (fetcher.IsFalling == true) //Jumping animation
             {
                 GetAnimatedGameObject.animationType = "jump";
             }
-            else if (isMoving == true)
+            else if (isMoving == true) //Walking animation
             {
                 GetAnimatedGameObject.animationType = "walk";
             }
-            else
+            else //Idle animation
             {
                 GetAnimatedGameObject.animationType = "idle";
             }
             isMoving = false;
 
+            //If the player falls out of the screen, teleports them back to the start
             if (GetGameObject.Transform.Position.Y > 1080)
             {
                 GetGameObject.Transform.Position = new Vector2(100, 950);
             }
         }
 
+        /// <summary>
+        /// Calculates the direction and speed the player should move
+        /// </summary>
+        /// <param name="direction">The direction the player should move in</param>
         public void Move(Vector2 direction)
         {
-            isMoving = true;
+            isMoving = true; //Sets a flag that the player is moving
+
             if (direction != Vector2.Zero)
             {
                 direction.Normalize();
             }
+
+            //Checks which way the player is moving and changes which way the sprite is facing
             if (direction == new Vector2(-1,0))
             {
                 GetAnimatedGameObject.facing = SpriteEffects.FlipHorizontally;
@@ -131,17 +147,21 @@ namespace Pieborne
             {
                 GetAnimatedGameObject.facing = SpriteEffects.None;
             }
+
             direction *= speed;
 
             GetGameObject.Transform.Translate(direction * GameWorld.deltaTime);
         }
 
+        /// <summary>
+        /// If the player is not falling, gives them an upward velocity
+        /// </summary>
         public void Jump()
         {
-            if (tmp.IsFalling == false)
+            if (fetcher.IsFalling == false)
             {
                 GetGameObject.Transform.verticalVelocity = -700;
-                tmp.IsFalling = true;
+                fetcher.IsFalling = true;
             }
         }
     }

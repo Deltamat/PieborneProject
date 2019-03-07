@@ -18,7 +18,7 @@ namespace Pieborne
         public Vector2 directionLeft;
         public Vector2 directionRight;
         protected int health;
-        public int Health
+        public virtual int Health
         {
             get
             {
