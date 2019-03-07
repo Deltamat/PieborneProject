@@ -34,6 +34,10 @@ namespace Pieborne
                 }
                 return instance;
             }
+            set
+            {
+                instance = value;
+            }
         }
 
         private GameWorld()
@@ -96,6 +100,7 @@ namespace Pieborne
 
             Song song = Content.Load<Song>("Attack of  the Flaming Pie Tins");
             MediaPlayer.Play(song);
+            
 
             PlayerFactory.Instance.Create("Player", new Vector2(100, 950));
 
@@ -188,6 +193,7 @@ namespace Pieborne
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            
 
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds; //Global timer
                         
