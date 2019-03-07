@@ -38,6 +38,18 @@ namespace Pieborne
                     gameObject.AddComponent(new SpriteRenderer("bricks/Brick Black"));
                     //gameObject.AddComponent(new Collider());
                     break;
+                case "Brick32":
+                    gameObject.AddComponent(new Terrain());
+                    gameObject.AddComponent(new SpriteRenderer("bricks/Brick Black 32"));
+                    break;
+                case "Brick64":
+                    gameObject.AddComponent(new Terrain());
+                    gameObject.AddComponent(new SpriteRenderer("bricks/Brick Black 64"));
+                    break;
+                case "Brick128":
+                    gameObject.AddComponent(new Terrain());
+                    gameObject.AddComponent(new SpriteRenderer("bricks/Brick Black 128"));
+                    break;
             }
             gameObject.Transform.Position = startPos;
             return gameObject;
