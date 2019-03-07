@@ -68,19 +68,19 @@ namespace Pieborne
 
             if (bossTimer > 10) // spin med skudene
             {
-                top += new Vector2(2, 2);
+                top += new Vector2(3, 3);
                 Vector2 topDirection = (top - parent.GetGameObject.Transform.Position);
                 topDirection.Normalize();
 
-                bot += new Vector2(-2, -2);
+                bot += new Vector2(-3, -3);
                 Vector2 botDirection = (bot - parent.GetGameObject.Transform.Position);
                 botDirection.Normalize();
 
-                left += new Vector2(2, -2);
+                left += new Vector2(3, -3);
                 Vector2 leftDirection = (left - parent.GetGameObject.Transform.Position);
                 leftDirection.Normalize();
 
-                right += new Vector2(-2, 2);
+                right += new Vector2(-3, 3);
                 Vector2 rightDirection = (right - parent.GetGameObject.Transform.Position);
                 rightDirection.Normalize();
 
@@ -93,7 +93,7 @@ namespace Pieborne
                     reloadTimer = 0;
                 }
             }
-            if (bossTimer > 15)
+            if (bossTimer > 12)
             {
                 bossTimer = 0;
                 ResetVectors();

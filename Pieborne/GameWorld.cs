@@ -154,7 +154,7 @@ namespace Pieborne
             }
             for (int i = 0; i < 64; i++)
             {
-                //TerrainFactory.Instance.Create("Brick", new Vector2(1152, i * 16 + 256)); //left boss wall
+                TerrainFactory.Instance.Create("Brick", new Vector2(1152, i * 16 + 256)); //left boss wall
             }
             for (int i = 0; i < 16; i++)
             {
