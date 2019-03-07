@@ -24,7 +24,9 @@ namespace Pieborne
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+
             spriteBatch.Draw(sprite, GetGameObject.Transform.Position, null, Color.White, rotation, new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f), 1f, SpriteEffects.None, 1f);
+
         }
 
         public override void LoadContent(ContentManager content)

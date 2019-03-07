@@ -14,6 +14,7 @@ namespace Pieborne
     {
         private Enemy parent;
         private Vector2 direction;
+        double reloadTimer;
 
         public void Enter(Enemy parent)
         {
@@ -22,13 +23,18 @@ namespace Pieborne
 
         public void Execute()
         {
+            reloadTimer += GameWorld.deltaTime;
             if (Player.position != Vector2.Zero)
             {
                 direction = Player.position - parent.GetGameObject.Transform.Position;
                 direction.Normalize();
             }
             //AI der skyder mod Player's position
-            ProjectileFactory.Instance.Create("Stjerne", parent.GetGameObject.Transform.Position, direction);
+            if (reloadTimer > 1f)
+            {
+                ProjectileFactory.Instance.Create("Stjerne", parent.GetGameObject.Transform.Position + direction * 60, direction);
+                reloadTimer = 0;
+            }
         }
 
         public void Exit()
