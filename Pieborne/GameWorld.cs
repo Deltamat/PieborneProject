@@ -21,11 +21,6 @@ namespace Pieborne
         Texture2D collisionTexture;
         SpriteFont font;
         public double shootTimer;
-        
-        
-
-        GameObject g;
-        
         Texture2D heart;
         public static AnimatedGameObject ago;
 

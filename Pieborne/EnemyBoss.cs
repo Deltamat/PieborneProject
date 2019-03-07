@@ -15,6 +15,7 @@ namespace Pieborne
         {
             this.speed = speed;
             Health = 100;
+            ChangeState(new PatrolState());
         }
 
 
@@ -25,7 +26,7 @@ namespace Pieborne
 
         public override void Update(GameTime gameTime)
         {
-
+            currentState.Execute();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
