@@ -22,7 +22,7 @@ namespace Pieborne
 
         public void Execute()
         {
-            if (Vector2.Distance(parent.GetGameObject.Transform.Position, Player.position) < 300 && parent.GetType() == typeof(EnemyRanged))
+            if (Vector2.Distance(parent.GetGameObject.Transform.Position, Player.position) < 500 && parent.GetType() == typeof(EnemyRanged))
             {
                 parent.ChangeState(new ShootingState());
             }
