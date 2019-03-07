@@ -71,12 +71,12 @@ namespace Pieborne
             IsMouseVisible = true;
             GenerateWorld();
 
-            EnemyFactory.Instance.Create("Rat", new Vector2(632, 900));
-            EnemyFactory.Instance.Create("Rat", new Vector2(700, 500));
-            EnemyFactory.Instance.Create("Rat", new Vector2(800, 100));
-            EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 700));
-            EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 800));
-            EnemyFactory.Instance.Create("RangedRat", new Vector2(680, 360));
+            //EnemyFactory.Instance.Create("Rat", new Vector2(632, 900));
+            //EnemyFactory.Instance.Create("Rat", new Vector2(700, 500));
+            //EnemyFactory.Instance.Create("Rat", new Vector2(800, 100));
+            //EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 700));
+            //EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 800));
+            //EnemyFactory.Instance.Create("RangedRat", new Vector2(680, 360));
             EnemyFactory.Instance.Create("BossRat", new Vector2(1500, 850));
 
             base.Initialize();
@@ -155,7 +155,7 @@ namespace Pieborne
             }
             for (int i = 0; i < 64; i++)
             {
-                TerrainFactory.Instance.Create("Brick", new Vector2(1152, i * 16 + 256)); //left boss wall
+                //TerrainFactory.Instance.Create("Brick", new Vector2(1152, i * 16 + 256)); //left boss wall
             }
             for (int i = 0; i < 16; i++)
             {
