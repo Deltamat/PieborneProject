@@ -112,21 +112,20 @@ namespace Pieborne
             g.Transform.Position = new Vector2(100, 950);
             g.LoadContent(Content);
 
-
-            BeerFactory.Instance.Create("Beer", new Vector2(100, 700));
-            BeerFactory.Instance.Create("Beer", new Vector2(200, 700));
-            BeerFactory.Instance.Create("Beer", new Vector2(300, 700));
-            BeerFactory.Instance.Create("Beer", new Vector2(400, 700));
-            BeerFactory.Instance.Create("Beer", new Vector2(500, 700));
-            BeerFactory.Instance.Create("Beer", new Vector2(600, 700));
-            BeerFactory.Instance.Create("Beer", new Vector2(700, 700));
-            BeerFactory.Instance.Create("Beer", new Vector2(800, 700));
+            BeerFactory.Instance.Create("Beer", new Vector2(100, 700)); //1st
+            BeerFactory.Instance.Create("Beer", new Vector2(634, 810)); //2nd
+            BeerFactory.Instance.Create("Beer", new Vector2(1100, 700)); //3rd
+            BeerFactory.Instance.Create("Beer", new Vector2(680, 330)); //4th       
+            BeerFactory.Instance.Create("Beer", new Vector2(100, 400)); //5th
+            BeerFactory.Instance.Create("Beer", new Vector2(548, 238)); //6th
+            BeerFactory.Instance.Create("Beer", new Vector2(1510, 450)); //7th
         }
 
         private void GenerateWorld()
         {
             TerrainFactory.Instance.Create("Brick", new Vector2(872, 536)); //right pyramid
             TerrainFactory.Instance.Create("Brick", new Vector2(488, 536)); //left pyramid
+            TerrainFactory.Instance.Create("Brick64", new Vector2(1128, 216)); //blocker before boss
             TerrainFactory.Instance.Create("Brick64", new Vector2(1740, 750)); //boss platform
             TerrainFactory.Instance.Create("Brick64", new Vector2(1300, 750)); //boss platform
             TerrainFactory.Instance.Create("Brick64", new Vector2(1510, 500)); //boss platform
