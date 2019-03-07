@@ -19,6 +19,7 @@ namespace Pieborne
         double animationCooldown;
         double immortalTimer;
         public bool immortal = false;
+        public float shootingSpeed = 0.5f;
 
         int health;
         public int Health

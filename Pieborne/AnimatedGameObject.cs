@@ -92,7 +92,7 @@ namespace Pieborne
                                 0,
                                 new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f),
                                 1f,
-                                SpriteEffects.None,
+                                facing,
                                 0.9f);
                     }
                     if (immortalFlashingTimer > 0.15)
@@ -102,7 +102,7 @@ namespace Pieborne
                 }
                 else
                 {
-                    spriteBatch.Draw(sr.sprite, Transform.Position, animationRectangles[currentAnimationIndexX, currentAnimationIndexY], Color.White, 0, new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f), 1f, SpriteEffects.None, 0.9f);
+                    spriteBatch.Draw(sr.sprite, Transform.Position, animationRectangles[currentAnimationIndexX, currentAnimationIndexY], Color.White, 0, new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f), 1f, facing, 0.9f);
                 }
 
 

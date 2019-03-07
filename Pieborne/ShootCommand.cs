@@ -18,7 +18,7 @@ namespace Pieborne
 
         public void Execute(Player p)
         {
-            if (GameWorld.Instance.shootTimer > 0.5)
+            if (GameWorld.Instance.shootTimer > p.shootingSpeed)
             {
                 ProjectileFactory.Instance.Create("Kunai", Player.position, direction);
                 GameWorld.Instance.shootTimer = 0;

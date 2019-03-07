@@ -18,6 +18,7 @@ namespace Pieborne
             {
                 GameWorld.gameObjectsToRemove.Add(otherObject);
                 Player.Instance.Health++;
+                Player.Instance.shootingSpeed += 0.1f;
                 return;
             }
 

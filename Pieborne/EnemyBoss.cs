@@ -14,6 +14,7 @@ namespace Pieborne
         public EnemyBoss(float speed, Vector2 startPos) : base(speed, startPos)
         {
             this.speed = speed;
+            Health = 100;
         }
 
 

@@ -85,6 +85,7 @@ namespace Pieborne
             EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 700));
             EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 800));
             EnemyFactory.Instance.Create("RangedRat", new Vector2(680, 360));
+            EnemyFactory.Instance.Create("BossRat", new Vector2(1500, 850));
 
             base.Initialize();
         }
@@ -110,7 +111,7 @@ namespace Pieborne
             g.AddComponent(new Collider());
             g.AddComponent(Player.Instance);
             g.AddComponent(new Gravity());
-            g.Transform.Position = new Vector2(100);
+            g.Transform.Position = new Vector2(100, 950);
             g.LoadContent(Content);
 
 
@@ -124,6 +125,9 @@ namespace Pieborne
         {
             TerrainFactory.Instance.Create("Brick", new Vector2(872, 536)); //right pyramid
             TerrainFactory.Instance.Create("Brick", new Vector2(488, 536)); //left pyramid
+            TerrainFactory.Instance.Create("Brick64", new Vector2(1740, 750)); //boss platform
+            TerrainFactory.Instance.Create("Brick64", new Vector2(1300, 750)); //boss platform
+            TerrainFactory.Instance.Create("Brick64", new Vector2(1510, 500)); //boss platform
             for (int i = 0; i < 2; i++)
             {
                 TerrainFactory.Instance.Create("Brick", new Vector2(16 * i + 872, 552)); //right pyramid
