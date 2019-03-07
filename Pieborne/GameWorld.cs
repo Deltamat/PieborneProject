@@ -23,6 +23,7 @@ namespace Pieborne
         Texture2D collisionTexture;
         SpriteFont font;
         public double shootTimer;
+        GameObject ranged;
         
 
         GameObject g;
@@ -103,6 +104,7 @@ namespace Pieborne
             g.AddComponent(new Player(300, new Vector2(100)));
             g.AddComponent(new Gravity());
             g.LoadContent(Content);
+
 
             
             e = new GameObject();
