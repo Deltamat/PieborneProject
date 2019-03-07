@@ -6,8 +6,6 @@ using System.Collections.Generic;
 
 namespace Pieborne
 {
-    //killroy was here
-
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -115,10 +113,18 @@ namespace Pieborne
             g.LoadContent(Content);
 
 
-            e = new GameObject();
-            e.Transform.Position = new Vector2(680, 324);
-            e.AddComponent(new SpriteRenderer("beer"));
-            e.AddComponent(new Beer());
+            BeerFactory.Instance.Create("Beer", new Vector2(500));
+
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    TerrainFactory.Instance.Create("Brick", new Vector2(16 * i - 1, 1064));
+            //}
+            //for (int i = 0; i < 67; i++)
+            //{
+            //    TerrainFactory.Instance.Create("Brick", new Vector2(8, 16 * i + 8));
+            //}
+
+            //TerrainFactory.Instance.Create("Brick", new Vector2(784, 859));
         }
 
         private void GenerateWorld()

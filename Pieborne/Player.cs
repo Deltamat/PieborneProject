@@ -60,7 +60,7 @@ namespace Pieborne
         {
             this.speed = speed;
             startPos = startPosition;
-            health = 10;            
+            health = 5;            
         }
 
         public override void Attach(GameObject gameObject)
