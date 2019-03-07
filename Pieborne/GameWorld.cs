@@ -25,7 +25,6 @@ namespace Pieborne
         
 
         GameObject g;
-        GameObject e;
         
         Texture2D heart;
         public static AnimatedGameObject ago;
@@ -104,13 +103,7 @@ namespace Pieborne
             Song song = Content.Load<Song>("Attack of  the Flaming Pie Tins");
             MediaPlayer.Play(song);
 
-            g = new AnimatedGameObject(10, 10);
-            g.AddComponent(new SpriteRenderer("cat_fighter_sprite"));
-            g.AddComponent(new Collider());
-            g.AddComponent(Player.Instance);
-            g.AddComponent(new Gravity());
-            g.Transform.Position = new Vector2(100, 950);
-            g.LoadContent(Content);
+            PlayerFactory.Instance.Create("Player", new Vector2(100, 950));
 
 
             BeerFactory.Instance.Create("Beer", new Vector2(500));
