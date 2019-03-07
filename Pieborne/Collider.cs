@@ -85,12 +85,12 @@ namespace Pieborne
                     int t = GetGameObject.CollisionBox.Bottom - otherObject.CollisionBox.Top;
                     GetGameObject.Transform.Translate(new Vector2(0, -t + 1));
 
-                    Gravity tmp = (Gravity)GetGameObject.GetComponent("Gravity");
-                    if (otherObject.type == "Terrain")
-                    {
-                        tmp.IsFalling = false;
+                        Gravity tmp = (Gravity)GetGameObject.GetComponent("Gravity");
+                        if (otherObject.type == "Terrain" || otherObject.type == "Enemy")
+                        {
+                            tmp.IsFalling = false;
+                        }
                     }
-                }
 
                 else if (GetGameObject.CollisionBox.Center.Y > otherObject.CollisionBox.Center.Y) // nedefra op
                 {

@@ -27,6 +27,7 @@ namespace Pieborne
         private new SpriteRenderer sr;
         public string animationType;
         private bool firstTime = true;
+        public SpriteEffects facing;
         double immortalFlashingTimer;
 
         public AnimatedGameObject(int frameCount, float animationFPS) : base()

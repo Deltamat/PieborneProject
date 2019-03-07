@@ -35,8 +35,7 @@ namespace Pieborne
             {
                 case "Brick":
                     gameObject.AddComponent(new Terrain());
-                    gameObject.AddComponent(new SpriteRenderer("bricks/Brick Black 64"));
-                    //gameObject.AddComponent(new Collider());
+                    gameObject.AddComponent(new SpriteRenderer("bricks/Brick Black"));
                     break;
                 case "Brick32":
                     gameObject.AddComponent(new Terrain());
