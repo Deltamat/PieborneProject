@@ -92,9 +92,19 @@ namespace Pieborne
                 projectile = (Projectile)component;
                 type = "Projectile";
             }
-            else if (component is Enemy)
+            else if (component is EnemyMelee)
             {
-                enemy = (Enemy)component;
+                enemy = (EnemyMelee)component;
+                type = "Enemy";
+            }
+            else if (component is EnemyRanged)
+            {
+                enemy = (EnemyRanged)component;
+                type = "Enemy";
+            }
+            else if (component is EnemyBoss)
+            {
+                enemy = (EnemyBoss)component;
                 type = "Enemy";
             }
 
