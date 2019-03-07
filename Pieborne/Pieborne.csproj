@@ -63,6 +63,7 @@
     <Compile Include="MoveCommand.cs" />
     <Compile Include="PatrolState.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="ProjectileFactory.cs" />
