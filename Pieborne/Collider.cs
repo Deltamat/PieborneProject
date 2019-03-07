@@ -63,7 +63,7 @@ namespace Pieborne
                         GetGameObject.Transform.Translate(new Vector2(0, -t + 1));
 
                         Gravity tmp = (Gravity)GetGameObject.GetComponent("Gravity");
-                        if (otherObject.type == "Terrain")
+                        if (otherObject.type == "Terrain" || otherObject.type == "Enemy")
                         {
                             tmp.IsFalling = false;
                         }
