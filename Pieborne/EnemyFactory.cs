@@ -35,7 +35,7 @@ namespace Pieborne
             {
                 case "Rat":
                     gameObject.AddComponent(new SpriteRenderer("RatMelee"));
-                    gameObject.AddComponent(new EnemyMelee(10, startPos));
+                    gameObject.AddComponent(new EnemyMelee(50, startPos));
                     gameObject.AddComponent(new Collider());
                     gameObject.AddComponent(new Gravity());
                     break;
@@ -44,6 +44,7 @@ namespace Pieborne
                     gameObject.AddComponent(new SpriteRenderer("RatRanged"));
                     gameObject.AddComponent(new EnemyRanged(200, startPos));
                     gameObject.AddComponent(new Collider());
+                    gameObject.AddComponent(new Gravity());
                     break;
 
                 case "BossRat":

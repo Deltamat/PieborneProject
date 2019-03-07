@@ -24,7 +24,7 @@ namespace Pieborne
         {
             if (Player.position != Vector2.Zero)
             {
-                direction = Player.position;
+                direction = Player.position - parent.GetGameObject.Transform.Position;
                 direction.Normalize();
             }
             //AI der skyder mod Player's position

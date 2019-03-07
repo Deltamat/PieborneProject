@@ -19,6 +19,11 @@ namespace Pieborne
                 return;
             }
 
+            if (otherObject.type == "Beer" && GetGameObject.type == "Enemy") // gør så enemy ikke collider med beer
+            {
+                return;
+            }
+
             if (GetGameObject.type == "Projectile" && (otherObject.type == "Terrain" || otherObject.type == "Enemy")) // hvis projectil rammer mur, fjern projectil
             {
                 GameWorld.gameObjectsToRemove.Add(GetGameObject);
@@ -33,9 +38,9 @@ namespace Pieborne
 
             Vector2 difference = GetGameObject.Transform.Position - otherObject.Transform.Position;
 
-            if (GetGameObject.type != "Projectile" && otherObject.type != "Projectile")
+            if (GetGameObject.type != "Projectile" && otherObject.type != "Projectile") // hvis objecterne ikke er projectile så skal collisionskoden køres
             {
-                if (Math.Abs(difference.X) > Math.Abs(difference.Y)) // hvis x forskellen er størst så skal den køre højre/venstre kollision
+                if (Math.Abs(difference.X) > Math.Abs(difference.Y) + 1) // hvis x forskellen er størst så skal den køre højre/venstre kollision
                 {
                     if (GetGameObject.CollisionBox.Center.X < otherObject.CollisionBox.Center.X) // højre til venstre
                     {
@@ -68,7 +73,7 @@ namespace Pieborne
                     {
                         int t = GetGameObject.CollisionBox.Top - otherObject.CollisionBox.Bottom;
                         GetGameObject.Transform.Translate(new Vector2(0, -t + 1));
-                        GetGameObject.Transform.verticalVelocity = 0;
+                        GetGameObject.Transform.verticalVelocity = 0; // få gravity til at sætte igang så snart man støder mod loftet
                     }
                 }
             }

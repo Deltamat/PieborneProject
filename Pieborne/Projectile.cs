@@ -20,6 +20,7 @@ namespace Pieborne
 
         public override void Update(GameTime gameTime)
         {
+            // kommer projectilet ud for skærmen fjernes det
             if (GetGameObject.Transform.Position.X < 0 || GetGameObject.Transform.Position.Y < 0 || GetGameObject.Transform.Position.X > GameWorld.Instance.ScreenSize.Right || GetGameObject.Transform.Position.Y > GameWorld.Instance.ScreenSize.Bottom)
             {
                 GameWorld.gameObjectsToRemove.Add(GetGameObject);
