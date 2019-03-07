@@ -11,6 +11,23 @@ namespace Pieborne
 {
     public class EnemyBoss : Enemy
     {
+        public override int Health
+        {
+            get
+            {
+                return health;
+            }
+            set
+            {
+                health = value;
+                if (health <= 0)
+                {
+                    GameWorld.gameObjectsToRemove.Add(GetGameObject);
+                    BeerFactory.Instance.Create("Key Lime Pie", GetGameObject.Transform.Position); //Spawn key lime pie
+                }
+            }
+        }
+
         public EnemyBoss(float speed, Vector2 startPos) : base(speed, startPos)
         {
             this.speed = speed;

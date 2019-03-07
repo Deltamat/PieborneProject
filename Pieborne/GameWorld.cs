@@ -19,8 +19,7 @@ namespace Pieborne
         public static List<GameObject> gameObjectsToRemove = new List<GameObject>();
         public static float deltaTime;        
         Texture2D collisionTexture;
-        SpriteFont font;
-        public double shootTimer;
+        SpriteFont font;        
         Texture2D heart;
         public static AnimatedGameObject ago;
 
@@ -71,12 +70,12 @@ namespace Pieborne
             IsMouseVisible = true;
             GenerateWorld();
 
-            //EnemyFactory.Instance.Create("Rat", new Vector2(632, 900));
-            //EnemyFactory.Instance.Create("Rat", new Vector2(700, 500));
-            //EnemyFactory.Instance.Create("Rat", new Vector2(800, 100));
-            //EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 700));
-            //EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 800));
-            //EnemyFactory.Instance.Create("RangedRat", new Vector2(680, 360));
+            EnemyFactory.Instance.Create("Rat", new Vector2(500, 900));
+            EnemyFactory.Instance.Create("Rat", new Vector2(700, 500));
+            EnemyFactory.Instance.Create("Rat", new Vector2(800, 100));
+            EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 700));
+            EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 800));
+            EnemyFactory.Instance.Create("RangedRat", new Vector2(680, 360));
             EnemyFactory.Instance.Create("BossRat", new Vector2(1500, 850));
 
             base.Initialize();
@@ -177,29 +176,27 @@ namespace Pieborne
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            
         }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="gameTime">Provides a snapshot of timing values</param>
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (shootTimer < Player.Instance.shootingSpeed)
-            {
-                shootTimer += gameTime.ElapsedGameTime.TotalSeconds;
-            }
-            
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds; //Global timer
+                        
+            //Updates every object
             foreach (GameObject item in gameObjects)
             {
                 item.Update(gameTime);
 
+                //Checks collision and gravity
                 foreach (GameObject otherItem in gameObjects)
                 {
                     if (otherItem != item && otherItem.CollisionBox.Intersects(item.CollisionBox) && otherItem.type != "Terrain" && otherItem.type != "Beer")

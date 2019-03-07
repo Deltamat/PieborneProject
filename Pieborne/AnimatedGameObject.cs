@@ -78,7 +78,7 @@ namespace Pieborne
             {
                 if (Player.Instance.immortal == true)
                 {
-                    if (immortalFlashingTimer <= 0.15)
+                    if (immortalFlashingTimer <= 0.15) //Counts 
                     {
                         immortalFlashingTimer += GameWorld.deltaTime;
                     }
@@ -104,35 +104,13 @@ namespace Pieborne
                 {
                     spriteBatch.Draw(sr.sprite, Transform.Position, animationRectangles[currentAnimationIndexX, currentAnimationIndexY], Color.White, 0, new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f), 1f, facing, 0.9f);
                 }
-
-
-
-                //spriteBatch.Draw(
-                //                sr.sprite,
-                //                Transform.Position,
-                //                animationRectangles[currentAnimationIndexX, currentAnimationIndexY],
-                //                Color.Red,
-                //                0,
-                //                new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f),
-                //                1f,
-                //                SpriteEffects.None,
-                //                0.9f);
-
-
-
-                //spriteBatch.Draw(
-                //sr.sprite,
-                //Transform.Position,
-                //animationRectangles[currentAnimationIndexX, currentAnimationIndexY],
-                //Color.White,
-                //0,
-                //new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f),
-                //1f,
-                //SpriteEffects.None,
-                //0.9f);
             }
         }
 
+        /// <summary>
+        /// Plays the idle animation
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values</param>
         private void Idle(GameTime gameTime)
         {
             timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
@@ -163,6 +141,10 @@ namespace Pieborne
             }
         }
 
+        /// <summary>
+        /// Plays the walking animation
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values</param>
         private void Walk(GameTime gameTime)
         {
             timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
@@ -189,6 +171,10 @@ namespace Pieborne
             }
         }
 
+        /// <summary>
+        /// Plays the jumping animation
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values</param>
         private void Jump(GameTime gameTime)
         {
             timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
@@ -219,6 +205,10 @@ namespace Pieborne
             }
         }
 
+        /// <summary>
+        /// Plays the throwing animation
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values</param>
         private void Throw(GameTime gameTime)
         {
             if (firstTime == true)
@@ -263,6 +253,10 @@ namespace Pieborne
             }
         }
 
+        /// <summary>
+        /// Plays the punching animation
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values</param>
         private void Punch(GameTime gameTime)
         {
             timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
