@@ -25,7 +25,7 @@ namespace Pieborne
         public override void Update(GameTime gameTime)
         {
 
-            //currentState.Execute();
+            currentState.Execute();
 
 
         }
