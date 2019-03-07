@@ -77,8 +77,12 @@ namespace Pieborne
             IsMouseVisible = true;
             GenerateWorld();
 
-            EnemyFactory.Instance.Create("Rat", new Vector2(1000, 100));
-            EnemyFactory.Instance.Create("RangedRat", new Vector2(900, 100));
+            EnemyFactory.Instance.Create("Rat", new Vector2(632, 900));
+            EnemyFactory.Instance.Create("Rat", new Vector2(700, 500));
+            EnemyFactory.Instance.Create("Rat", new Vector2(800, 100));
+            EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 700));
+            EnemyFactory.Instance.Create("RangedRat", new Vector2(632, 800));
+            EnemyFactory.Instance.Create("RangedRat", new Vector2(680, 360));
 
             base.Initialize();
         }
@@ -124,30 +128,59 @@ namespace Pieborne
 
         private void GenerateWorld()
         {
-            
-            for (int i = 0; i < 14; i++)
+            TerrainFactory.Instance.Create("Brick", new Vector2(872, 536)); //right pyramid
+            TerrainFactory.Instance.Create("Brick", new Vector2(488, 536)); //left pyramid
+            for (int i = 0; i < 2; i++)
             {
-                TerrainFactory.Instance.Create("Brick", new Vector2(150, i * 16 + 750));
+                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i + 872, 552)); //right pyramid
+                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i + 472, 552)); //left pyramid
+                TerrainFactory.Instance.Create("Brick", new Vector2(i * 64 + 648, 408)); //cage
             }
+            for (int i = 0; i < 3; i++)
+            {
+                TerrainFactory.Instance.Create("Brick", new Vector2(i * 16 + 1104, 752)); //step platform right
+                TerrainFactory.Instance.Create("Brick", new Vector2(i * 16 + 72, 488)); //step platform left
+                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i + 872, 568)); //right pyramid
+                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i + 456, 568)); //left pyramid
+                TerrainFactory.Instance.Create("Brick32", new Vector2(200, 32 * i + 167)); //top zigzag
+                TerrainFactory.Instance.Create("Brick32", new Vector2(360, 32 * i + 81)); //top zigzag
+                TerrainFactory.Instance.Create("Brick32", new Vector2(520, 32 * i + 167)); //top zigzag
+                TerrainFactory.Instance.Create("Brick32", new Vector2(680, 32 * i + 81)); //top zigzag
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i + 872, 584)); //right pyramid
+                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i + 440, 584)); //left pyramid
+                TerrainFactory.Instance.Create("Brick", new Vector2(632, i * 16 + 320)); //cage
+                TerrainFactory.Instance.Create("Brick", new Vector2(728, i * 16 + 320)); //cage
 
+            }
             for (int i = 0; i < 5; i++)
             {
-                TerrainFactory.Instance.Create("Brick", new Vector2(i * 16 + 600, 750));
-                TerrainFactory.Instance.Create("Brick", new Vector2(i * 16 + 600, 850));
+                TerrainFactory.Instance.Create("Brick", new Vector2(i * 16 + 600, 750)); //ranged rat platform bottom
+                TerrainFactory.Instance.Create("Brick", new Vector2(i * 16 + 600, 850)); //ranged rat platform bottom
+                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i + 872, 600)); //right pyramid
+                TerrainFactory.Instance.Create("Brick", new Vector2(16 * i + 424, 600)); //left pyramid
+            }            
+            for (int i = 0; i < 14; i++)
+            {
+                TerrainFactory.Instance.Create("Brick", new Vector2(150, i * 16 + 744)); //starting wall
             }
-
-            TerrainFactory.Instance.Create("Brick", new Vector2(784, 859));
-
+            for (int i = 0; i < 64; i++)
+            {
+                TerrainFactory.Instance.Create("Brick", new Vector2(1152, i * 16 + 256)); //left boss wall
+            }
             for (int i = 0; i < 16; i++)
             {
-                TerrainFactory.Instance.Create("Brick128", new Vector2(128 * i, 1024));
-                TerrainFactory.Instance.Create("Brick128", new Vector2(128 * i, 0));
-                TerrainFactory.Instance.Create("Brick64", new Vector2(64 * i + 64, 640));
+                TerrainFactory.Instance.Create("Brick64", new Vector2(64 * i + 64, 640)); //middle layer roof
+                TerrainFactory.Instance.Create("Brick64", new Vector2(64 * i + 152, 280)); //bottom layer roof
+                TerrainFactory.Instance.Create("Brick128", new Vector2(128 * i, 1024)); //border
+                TerrainFactory.Instance.Create("Brick128", new Vector2(128 * i, 0)); //border
             }
             for (int i = 0; i < 9; i++)
             {
-                TerrainFactory.Instance.Create("Brick128", new Vector2(0, 128 * i));
-                TerrainFactory.Instance.Create("Brick128", new Vector2(1920, 128 * i));
+                TerrainFactory.Instance.Create("Brick128", new Vector2(0, 128 * i)); //border
+                TerrainFactory.Instance.Create("Brick128", new Vector2(1920, 128 * i)); //border
             }
         }
 
