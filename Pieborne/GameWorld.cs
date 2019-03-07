@@ -113,18 +113,14 @@ namespace Pieborne
             g.LoadContent(Content);
 
 
-            BeerFactory.Instance.Create("Beer", new Vector2(500));
-
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    TerrainFactory.Instance.Create("Brick", new Vector2(16 * i - 1, 1064));
-            //}
-            //for (int i = 0; i < 67; i++)
-            //{
-            //    TerrainFactory.Instance.Create("Brick", new Vector2(8, 16 * i + 8));
-            //}
-
-            //TerrainFactory.Instance.Create("Brick", new Vector2(784, 859));
+            BeerFactory.Instance.Create("Beer", new Vector2(100, 700));
+            BeerFactory.Instance.Create("Beer", new Vector2(200, 700));
+            BeerFactory.Instance.Create("Beer", new Vector2(300, 700));
+            BeerFactory.Instance.Create("Beer", new Vector2(400, 700));
+            BeerFactory.Instance.Create("Beer", new Vector2(500, 700));
+            BeerFactory.Instance.Create("Beer", new Vector2(600, 700));
+            BeerFactory.Instance.Create("Beer", new Vector2(700, 700));
+            BeerFactory.Instance.Create("Beer", new Vector2(800, 700));
         }
 
         private void GenerateWorld()
@@ -208,7 +204,7 @@ namespace Pieborne
                 Exit();
 
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (shootTimer < 0.5)
+            if (shootTimer < Player.Instance.shootingSpeed)
             {
                 shootTimer += gameTime.ElapsedGameTime.TotalSeconds;
             }
