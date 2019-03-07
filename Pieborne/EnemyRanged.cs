@@ -18,6 +18,11 @@ namespace Pieborne
             ChangeState(new PatrolState());
         }
 
+        public override void Attach(GameObject gameObject)
+        {
+
+        }
+
         public override void LoadContent(ContentManager content)
         {
 
