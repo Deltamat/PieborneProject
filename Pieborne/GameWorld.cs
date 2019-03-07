@@ -24,6 +24,7 @@ namespace Pieborne
         SpriteFont font;
         public double shootTimer;
         
+        
 
         GameObject g;
         GameObject e;
@@ -76,7 +77,7 @@ namespace Pieborne
         protected override void Initialize()
         {
             IsMouseVisible = true;
-            
+            GenerateWorld();
 
             base.Initialize();
         }
@@ -111,13 +112,29 @@ namespace Pieborne
             //e.AddComponent(new Terrain());
             e.AddComponent(new Beer());
 
-            for (int i = 0; i < 20; i++)
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    TerrainFactory.Instance.Create("Brick", new Vector2(16 * i - 1, 1064));
+            //}
+            //for (int i = 0; i < 67; i++)
+            //{
+            //    TerrainFactory.Instance.Create("Brick", new Vector2(8, 16 * i + 8));
+            //}
+
+            //TerrainFactory.Instance.Create("Brick", new Vector2(784, 859));
+        }
+
+        private void GenerateWorld()
+        {
+            for (int i = 0; i < 16; i++)
             {
-                TerrainFactory.Instance.Create("Brick", new Vector2(64 * i - 1, 1064));
+                TerrainFactory.Instance.Create("Brick128", new Vector2(128 * i, 1024));
+                TerrainFactory.Instance.Create("Brick128", new Vector2(128 * i, 0));
             }
-            for (int i = 0; i < 67; i++)
+            for (int i = 0; i < 9; i++)
             {
-                TerrainFactory.Instance.Create("Brick", new Vector2(8, 16 * i + 8));
+                TerrainFactory.Instance.Create("Brick128", new Vector2(0, 128 * i));
+                TerrainFactory.Instance.Create("Brick128", new Vector2(1920, 128 * i));
             }
 
             TerrainFactory.Instance.Create("Brick", new Vector2(784, 859));
@@ -205,10 +222,7 @@ namespace Pieborne
             for (int i = 0; i < Player.Instance.Health; i++)
             {
                 spriteBatch.Draw(heart, new Vector2(35 * i + 5, 5), Color.White);
-            }
-
-            Gravity tmp = (Gravity)g.GetComponent("Gravity");
-            spriteBatch.DrawString(font, $"{tmp.IsFalling}", new Vector2(600), Color.White);
+            }            
 
             spriteBatch.End();
             base.Draw(gameTime);
