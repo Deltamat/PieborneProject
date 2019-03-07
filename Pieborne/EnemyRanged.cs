@@ -15,12 +15,11 @@ namespace Pieborne
         public EnemyRanged(float speed, Vector2 startPos) : base(speed, startPos)
         {
             this.speed = speed;
+            Health = 10;
+            ChangeState(new PatrolState());
         }
 
-        public override void Attach(GameObject gameObject)
-        {
-
-        }
+      
 
         public override void LoadContent(ContentManager content)
         {

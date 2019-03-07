@@ -14,6 +14,7 @@ namespace Pieborne
         public EnemyMelee(float speed, Vector2 startPos) : base(speed, startPos)
         {
             this.speed = speed;
+            Health = 10;
             ChangeState(new PatrolState());
         }
 

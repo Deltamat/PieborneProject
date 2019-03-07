@@ -16,10 +16,6 @@ namespace Pieborne
             this.speed = speed;
         }
 
-        public override void Attach(GameObject gameObject)
-        {
-
-        }
 
         public override void LoadContent(ContentManager content)
         {
