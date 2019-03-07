@@ -23,6 +23,7 @@ namespace Pieborne
         Texture2D collisionTexture;
         SpriteFont font;
         public double shootTimer;
+        GameObject ranged;
         
 
         GameObject g;
