@@ -22,6 +22,7 @@ namespace Pieborne
         SpriteFont font;        
         Texture2D heart;
         public static AnimatedGameObject ago;
+        public bool gameWon;
 
         static GameWorld instance;
         static public GameWorld Instance
@@ -96,6 +97,7 @@ namespace Pieborne
 
             Song song = Content.Load<Song>("Attack of  the Flaming Pie Tins");
             MediaPlayer.Play(song);
+            MediaPlayer.IsRepeating = true;
 
             PlayerFactory.Instance.Create("Player", new Vector2(100, 950));
 
@@ -234,21 +236,27 @@ namespace Pieborne
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
-            spriteBatch.Draw(Background, ScreenSize, Color.White);
-            foreach (GameObject item in gameObjects)
+            if (gameWon == false)
             {
-                item.Draw(spriteBatch);
-                #if DEBUG
-                DrawCollisionBox(item);
-                #endif
+                spriteBatch.Draw(Background, ScreenSize, Color.White);
+                foreach (GameObject item in gameObjects)
+                {
+                    item.Draw(spriteBatch);
+                    #if DEBUG
+                    DrawCollisionBox(item);
+                    #endif
+                }
+                for (int i = 0; i < Player.Instance.Health; i++)
+                {
+                    spriteBatch.Draw(heart, new Vector2(35 * i + 5, 5), Color.White);
+                }
             }
-            for (int i = 0; i < Player.Instance.Health; i++)
+            else
             {
-                spriteBatch.Draw(heart, new Vector2(35 * i + 5, 5), Color.White);
-            }            
-
+                spriteBatch.DrawString(font, "You've found the Key Lime Pie and have won! Huzzah!", new Vector2(800, 540), Color.Lime);
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,10 @@ namespace Pieborne
                 GameWorld.gameObjectsToRemove.Add(otherObject);
                 Player.Instance.Health++;
                 Player.Instance.shootingSpeed *= 0.9f;
+                if (otherObject.sr.sprite == GameWorld.Instance.Content.Load<Texture2D>("keylimepie"))
+                {
+                    GameWorld.Instance.gameWon = true;
+                }
                 return;
             }
 

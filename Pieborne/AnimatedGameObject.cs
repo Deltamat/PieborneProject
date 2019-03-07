@@ -75,10 +75,10 @@ namespace Pieborne
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (sr != null)
-            {
-                if (Player.Instance.immortal == true)
+            {                
+                if (Player.Instance.immortal == true) //Makes the player flash while immortal
                 {
-                    if (immortalFlashingTimer <= 0.15) //Counts 
+                    if (immortalFlashingTimer <= 0.15)
                     {
                         immortalFlashingTimer += GameWorld.deltaTime;
                     }
@@ -100,7 +100,7 @@ namespace Pieborne
                         immortalFlashingTimer = 0;
                     }
                 }
-                else
+                else //Draws the player normally
                 {
                     spriteBatch.Draw(sr.sprite, Transform.Position, animationRectangles[currentAnimationIndexX, currentAnimationIndexY], Color.White, 0, new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f), 1f, facing, 0.9f);
                 }
