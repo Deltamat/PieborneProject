@@ -28,6 +28,7 @@ namespace Pieborne
         public string animationType;
         private bool firstTime = true;
         public SpriteEffects facing;
+        double immortalFlashingTimer;
 
         public AnimatedGameObject(int frameCount, float animationFPS) : base()
         {            
@@ -75,17 +76,61 @@ namespace Pieborne
         {
             if (sr != null)
             {
-                spriteBatch.Draw(
-                sr.sprite,
-                Transform.Position,
-                animationRectangles[currentAnimationIndexX, currentAnimationIndexY],
-                Color.White,
-                0,
-                new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f),
-                1f,
-                facing,
-                0.9f);
-            }           
+                if (Player.Instance.immortal == true)
+                {
+                    if (immortalFlashingTimer <= 0.15)
+                    {
+                        immortalFlashingTimer += GameWorld.deltaTime;
+                    }
+                    if (immortalFlashingTimer > 0.1)
+                    {
+                        spriteBatch.Draw(
+                                sr.sprite,
+                                Transform.Position,
+                                animationRectangles[currentAnimationIndexX, currentAnimationIndexY],
+                                Color.Red,
+                                0,
+                                new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f),
+                                1f,
+                                SpriteEffects.None,
+                                0.9f);
+                    }
+                    if (immortalFlashingTimer > 0.15)
+                    {
+                        immortalFlashingTimer = 0;
+                    }
+                }
+                else
+                {
+                    spriteBatch.Draw(sr.sprite, Transform.Position, animationRectangles[currentAnimationIndexX, currentAnimationIndexY], Color.White, 0, new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f), 1f, SpriteEffects.None, 0.9f);
+                }
+
+
+
+                //spriteBatch.Draw(
+                //                sr.sprite,
+                //                Transform.Position,
+                //                animationRectangles[currentAnimationIndexX, currentAnimationIndexY],
+                //                Color.Red,
+                //                0,
+                //                new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f),
+                //                1f,
+                //                SpriteEffects.None,
+                //                0.9f);
+
+
+
+                //spriteBatch.Draw(
+                //sr.sprite,
+                //Transform.Position,
+                //animationRectangles[currentAnimationIndexX, currentAnimationIndexY],
+                //Color.White,
+                //0,
+                //new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f),
+                //1f,
+                //SpriteEffects.None,
+                //0.9f);
+            }
         }
 
         private void Idle(GameTime gameTime)

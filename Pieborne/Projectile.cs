@@ -11,15 +11,23 @@ namespace Pieborne
     {
         Vector2 direction;
         float speed;
+        public string team;
+        double aliveTimer;
 
-        public Projectile(Vector2 direction, float speed)
+        public Projectile(Vector2 direction, float speed, string team)
         {
             this.direction = direction;
             this.speed = speed;
+            this.team = team;
         }
 
         public override void Update(GameTime gameTime)
         {
+            aliveTimer += GameWorld.deltaTime;
+            if (aliveTimer > 0.8)
+            {
+                GameWorld.gameObjectsToRemove.Add(GetGameObject);
+            }
             // kommer projectilet ud for skærmen fjernes det
             if (GetGameObject.Transform.Position.X < 0 || GetGameObject.Transform.Position.Y < 0 || GetGameObject.Transform.Position.X > GameWorld.Instance.ScreenSize.Right || GetGameObject.Transform.Position.Y > GameWorld.Instance.ScreenSize.Bottom)
             {

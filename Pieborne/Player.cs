@@ -17,6 +17,9 @@ namespace Pieborne
         bool isMoving;
         public bool shooting;
         double animationCooldown;
+        double immortalTimer;
+        public bool immortal = false;
+
         int health;
         public int Health
         {
@@ -26,7 +29,15 @@ namespace Pieborne
             }
             set
             {
-                health = value;
+                if (value < health && immortal == false)
+                {
+                    immortal = true;
+                    health = value;
+                }
+                else if (value > health)
+                {
+                    health = value;
+                }
             }
         }
 
@@ -38,13 +49,13 @@ namespace Pieborne
             {
                 if (instance == null)
                 {
-                    instance = new Player(1, Vector2.Zero);
+                    instance = new Player(300, Vector2.Zero);
                 }
                 return instance;
             }
         }
 
-        public Player(float speed, Vector2 startPosition)
+        private Player(float speed, Vector2 startPosition)
         {
             this.speed = speed;
             startPos = startPosition;
@@ -59,6 +70,16 @@ namespace Pieborne
 
         public override void Update(GameTime gameTime)
         {
+            if (immortal == true)
+            {
+                immortalTimer += GameWorld.deltaTime;
+            }
+            if (immortalTimer > 0.75)
+            {
+                immortal = false;
+                immortalTimer = 0;
+            }
+
             InputHandler.Instance.Execute(this);
             position = GetGameObject.Transform.Position; //så andre klasser kan se på player position, 
             tmp = (Gravity)GetGameObject.GetComponent("Gravity");

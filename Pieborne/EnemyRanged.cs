@@ -19,8 +19,6 @@ namespace Pieborne
             ChangeState(new PatrolState());
         }
 
-      
-
         public override void LoadContent(ContentManager content)
         {
 

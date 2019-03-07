@@ -35,13 +35,13 @@ namespace Pieborne
             {
                 case "Kunai":
                     gameObject.AddComponent(new SpriteRenderer("Kunai_Pixel"));
-                    gameObject.AddComponent(new Projectile(direction, 700));
+                    gameObject.AddComponent(new Projectile(direction, 700, "player"));
                     gameObject.AddComponent(new Collider());
                     break;
 
                 case "Stjerne":
                     gameObject.AddComponent(new SpriteRenderer("Ninja_Star_Pixel"));
-                    gameObject.AddComponent(new Projectile(direction, 600));
+                    gameObject.AddComponent(new Projectile(direction, 600, "enemy"));
                     gameObject.AddComponent(new Collider());
                     break;
             }
