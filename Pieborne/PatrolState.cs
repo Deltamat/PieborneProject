@@ -30,6 +30,10 @@ namespace Pieborne
             {
                 parent.ChangeState(new ChargingState());
             }
+            if (Player.position.X > 1152 && parent.GetType() == typeof(EnemyBoss))
+            {
+                parent.ChangeState(new BossState());
+            }
             patrolTimer += GameWorld.deltaTime;
             //move to the left for 2 seconds
             if (patrolTimer < 2)
