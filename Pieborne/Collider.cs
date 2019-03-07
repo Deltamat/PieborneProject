@@ -26,6 +26,11 @@ namespace Pieborne
                 return;
             }
 
+            if (GetGameObject.type == "Player" && otherObject.type == "Enemy")
+            {
+                Player.Instance.Health--;
+            }
+
             if (GetGameObject.type == "Projectile") // hvis projectil rammer mur, fjern projectil
             {
                 if (otherObject.type == "Terrain")

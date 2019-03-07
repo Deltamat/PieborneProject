@@ -26,7 +26,7 @@ namespace Pieborne
 
         public override void Update(GameTime gameTime)
         {
-            //currentState.Execute();
+            currentState.Execute();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
