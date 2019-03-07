@@ -79,6 +79,9 @@ namespace Pieborne
             IsMouseVisible = true;
             GenerateWorld();
 
+            EnemyFactory.Instance.Create("Rat", new Vector2(1000, 100));
+            EnemyFactory.Instance.Create("RangedRat", new Vector2(900, 100));
+
             base.Initialize();
         }
 
@@ -101,7 +104,7 @@ namespace Pieborne
             g = new AnimatedGameObject(10, 10);
             g.AddComponent(new SpriteRenderer("cat_fighter_sprite"));
             g.AddComponent(new Collider());
-            g.AddComponent(new Player(300, new Vector2(100)));
+            g.AddComponent(new Player(300, new Vector2(100, 950)));
             g.AddComponent(new Gravity());
             g.LoadContent(Content);
 
@@ -126,21 +129,31 @@ namespace Pieborne
 
         private void GenerateWorld()
         {
+            
+            for (int i = 0; i < 14; i++)
+            {
+                TerrainFactory.Instance.Create("Brick", new Vector2(150, i * 16 + 750));
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                TerrainFactory.Instance.Create("Brick", new Vector2(i * 16 + 600, 750));
+                TerrainFactory.Instance.Create("Brick", new Vector2(i * 16 + 600, 850));
+            }
+
+            TerrainFactory.Instance.Create("Brick", new Vector2(784, 859));
+
             for (int i = 0; i < 16; i++)
             {
                 TerrainFactory.Instance.Create("Brick128", new Vector2(128 * i, 1024));
                 TerrainFactory.Instance.Create("Brick128", new Vector2(128 * i, 0));
+                TerrainFactory.Instance.Create("Brick64", new Vector2(64 * i + 64, 640));
             }
             for (int i = 0; i < 9; i++)
             {
                 TerrainFactory.Instance.Create("Brick128", new Vector2(0, 128 * i));
                 TerrainFactory.Instance.Create("Brick128", new Vector2(1920, 128 * i));
             }
-
-            TerrainFactory.Instance.Create("Brick", new Vector2(784, 859));
-
-            EnemyFactory.Instance.Create("Rat", new Vector2(1000, 100));
-            EnemyFactory.Instance.Create("RangedRat", new Vector2(900, 100));
         }
 
         /// <summary>

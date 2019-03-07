@@ -27,6 +27,7 @@ namespace Pieborne
         private new SpriteRenderer sr;
         public string animationType;
         private bool firstTime = true;
+        public SpriteEffects facing;
 
         public AnimatedGameObject(int frameCount, float animationFPS) : base()
         {            
@@ -82,7 +83,7 @@ namespace Pieborne
                 0,
                 new Vector2(animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Width * 0.5f, animationRectangles[currentAnimationIndexX, currentAnimationIndexY].Height * 0.5f),
                 1f,
-                SpriteEffects.None,
+                facing,
                 0.9f);
             }           
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,7 +90,7 @@ namespace Pieborne
 
             if (GetGameObject.Transform.Position.Y > 1080)
             {
-                GetGameObject.Transform.Position = new Vector2(500);
+                GetGameObject.Transform.Position = new Vector2(100, 950);
             }
         }
 
@@ -100,7 +101,14 @@ namespace Pieborne
             {
                 direction.Normalize();
             }
-
+            if (direction == new Vector2(-1,0))
+            {
+                GetAnimatedGameObject.facing = SpriteEffects.FlipHorizontally;
+            }
+            else if (direction == new Vector2(1, 0))
+            {
+                GetAnimatedGameObject.facing = SpriteEffects.None;
+            }
             direction *= speed;
 
             GetGameObject.Transform.Translate(direction * GameWorld.deltaTime);
