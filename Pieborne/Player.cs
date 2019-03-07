@@ -31,6 +31,10 @@ namespace Pieborne
             }
             set
             {
+                if (value <= 0)
+                {
+                    GameWorld.Instance.Exit();
+                }
                 if (value < health && immortal == false)
                 {
                     immortal = true;

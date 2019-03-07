@@ -35,6 +35,10 @@ namespace Pieborne
                 }
                 return instance;
             }
+            set
+            {
+                instance = value;
+            }
         }
 
         private GameWorld()
@@ -190,6 +194,7 @@ namespace Pieborne
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            
 
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds; //Global timer
                         
